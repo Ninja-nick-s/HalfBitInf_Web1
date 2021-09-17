@@ -1,0 +1,29 @@
+.button {
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 900;
+  border-radius: 2px;
+  transition: color 200ms ease-out;
+  transition: background-color 200ms ease-out;
+  outline: none;
+  background: rgb(7, 163, 220);
+}
+.button:hover{
+  background: orange;
+  
+}
+.button:focus {
+  background: rgb(197, 129, 3);
+}
+.button:disabled {
+  background-color: rgba(160, 128, 68, 0.404);
+  cursor: not-allowed;
+}
+.button:disabled:focus,
+.button:disabled:hover {
+  color: white;
+}
