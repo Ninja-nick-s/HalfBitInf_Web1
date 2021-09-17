@@ -1,0 +1,15 @@
+.alert h2 {
+  font-weight: 400;
+}
+.alert {
+  
+  text-align: center;
+}
+.alert button {
+  width: 80%;
+}
+@media (max-width: 670px) {
+  .modal {
+    width: calc(100% - 80px);
+  }
+}
