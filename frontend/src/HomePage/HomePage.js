@@ -6,6 +6,10 @@ import Navbar from "../UI/Navbar/Navbar";
 const Home =()=> {
     const MainTopleft = useRef(null)
     const MainBottomright = useRef(null)
+    const MainBoardright = useRef(null)
+    const facebook = useRef(null)
+    const instagram = useRef(null)
+    const email = useRef(null)
     useEffect(()=>{
         Lottie.loadAnimation({
             container:MainTopleft.current,
@@ -21,6 +25,34 @@ const Home =()=> {
             autoplay:true,
             animationData:require('./homepagejson3.json')
         })
+        Lottie.loadAnimation({
+            container:MainBoardright.current,
+            renderer:'svg',
+            loop:true,
+            autoplay:true,
+            animationData:require('./mainboardjson.json')
+        })
+        Lottie.loadAnimation({
+            container:facebook.current,
+            renderer:'svg',
+            loop:true,
+            autoplay:true,
+            animationData:require('./facebookjson.json')
+        })
+        Lottie.loadAnimation({
+            container:email.current,
+            renderer:'svg',
+            loop:true,
+            autoplay:true,
+            animationData:require('./mailjson.json')
+        })
+        Lottie.loadAnimation({
+            container:instagram.current,
+            renderer:'svg',
+            loop:true,
+            autoplay:true,
+            animationData:require('./instagramjson.json')
+        })
     },[])
     
     return(
@@ -34,6 +66,21 @@ const Home =()=> {
             <div className={homepage.cover}>
                     <div className={homepage.notejson2}  ref={MainTopleft} ></div>
                     <div className={homepage.notejson3}  ref={MainBottomright}></div>
+                    <div className={homepage.left}>
+                        <div className={homepage.head}>NOTE KEEPER</div>
+                        <div className={homepage.quote}>If there was a wrong note, it didn't matter as long as it was rocking</div>
+                        <div className={homepage.contact}>
+                            <div className={homepage.contacticon} ref={facebook}></div>
+                            <div className={homepage.contacticon} ref={email}></div>
+                            <div className={homepage.contacticon} ref={instagram}></div>
+                        </div>
+                    </div>
+                    <div className={homepage.right}>
+                        <div className={homepage.mainboardjson} ref={MainBoardright}></div>
+                        <div className={homepage.circle_cover}>
+                            <div className={homepage.circle}></div>
+                        </div>
+                    </div>
                     <img src="/images/girlstudyhomepage.jpg"></img>
             </div>
             

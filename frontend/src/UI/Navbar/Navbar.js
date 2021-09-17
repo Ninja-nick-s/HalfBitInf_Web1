@@ -33,16 +33,27 @@ const Navbar =(props)=> {
     return(
       <div className={navbar.main}>
 
-          <NavLink to="/" exact >
+          <NavLink to="/" className={navbar.navlink} exact >
             <div className={`${navbar.icon} ${props.currentActive==1?navbar.active:null}`} ref={Home}></div>
+            <div className={navbar.namecover}>
+              <div className={`${navbar.name} ${props.currentActive==1?navbar.active:null}`}>Home</div>
+            </div>
           </NavLink>
-
-          <NavLink to="/login" exact>
+          
+          <NavLink to="/login" className={navbar.navlink} exact>
             <div className={`${navbar.icon} ${props.currentActive==2?navbar.active:null}`} ref={Login}></div>
+            <div className={navbar.namecover}>
+              <div className={`${navbar.name} ${props.currentActive==2?navbar.active:null}`}>Login</div>
+            </div>
           </NavLink>
-          <NavLink to="/main" exact>
+          
+          <NavLink to="/main" className={navbar.navlink} exact>
             <div className={`${navbar.icon} ${props.currentActive==3?navbar.active:null}`} ref={Dashboard}></div>
+            <div className={navbar.namecover}>
+              <div className={`${navbar.name} ${props.currentActive==3?navbar.active:null}`}>Profile</div>
+            </div>
           </NavLink>
+          
         </div>
     )
 }

@@ -2,19 +2,54 @@
   width: 6%;
 }
 .icon{
-  margin: 56px 0px;
+  margin-top: 56px;
   border: 4px solid orange;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   background: white;
   cursor: pointer;
+  transition: 0.1s ease;
 }
 .icon:hover{
   transform: scale(1.1);
 }
+
 .icon.active{
   box-shadow: 0px 0px 20px 5px gray;
-  transform: scale(1.1);
   border: 4px solid rgb(7, 198, 208);
+}
+.name{
+  background: orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  color: white;
+  font-weight: 600;
+  width: 82%;
+  height: 0px;
+  transition: 0.1s ease;
+  
+}
+.name.active{
+  background: rgb(7, 198, 208);
+  transform: scale(1.1);
+}
+.navlink:hover .namecover .name{
+  height: 30px;
+  transform: scale(1.1);
+}
+.navlink{
+  width: 80px;
+  height: 90px;
+  text-decoration: none;
+}
+.namecover{
+  width: 86px;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  transform: translateY(-20px);
 }
