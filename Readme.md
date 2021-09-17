@@ -19,11 +19,24 @@
   ```
 
 - Start your mongodb server in your local environment
-- install dependencies & start project
+- Make sure you have node lts version(14.17.6) installed
+- install dependencies & Start project both frontend and backend
   ```
   npm install
+  npm run dev
+  ```
+- Start just Backend api
+  ```
+  cd HalfBitInf_Web1
   npm run server
   ```
+- Start just frontend
+
+  ```
+  cd HalfBitInf_Web1/frontend
+  npm start
+  ```
+
 - Suggestion to use postman to test api routes
 
 ## Walkthrough Database in Terminal
