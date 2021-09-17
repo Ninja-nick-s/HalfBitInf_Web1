@@ -18,11 +18,18 @@
   cd HalfBitInf_Web1
   ```
 
-- Start your mongodb server in your local environment
 - Make sure you have node lts version(14.17.6) installed
+- Install node modules
+  ```
+  cd HalfBitInf_Web1
+  npm i
+  cd HalfBitInf_Web1/frontend
+  npm i
+  ```
+- Start your mongodb server in your local environment
 - install dependencies & Start project both frontend and backend
   ```
-  npm install
+  cd HalfBitInf_Web1
   npm run dev
   ```
 - Start just Backend api
