@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb://localhost:27017/NoteMaker"
+  "mongoURI": "mongodb://localhost:27017/NoteMaker",
+  "jwtSecret": "mysecret"
 }
