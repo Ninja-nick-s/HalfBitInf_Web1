@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,8 +13,16 @@ import Alert from "./UI/Alert/Alert";
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
+import { LoadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 function App() {
+  useEffect(() => {
+    store.dispatch(LoadUser());
+  }, []);
   return (
     <Provider store={store}>
       <Router>
