@@ -2,8 +2,10 @@ import React, { useEffect, useState, useRef } from 'react'
 import homepage from './HomePage.module.css'
 import Lottie from "lottie-web"
 import Navbar from "../UI/Navbar/Navbar";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Home =()=> {
+const Home =(props)=> {
     const MainTopleft = useRef(null)
     const MainBottomright = useRef(null)
     const MainBoardright = useRef(null)
@@ -60,7 +62,7 @@ const Home =()=> {
             <div className={homepage.topright}> </div>
             <div className={homepage.bottomleft}> </div>
             <div className={homepage.navbar}>
-                <Navbar currentActive={1}></Navbar>
+                <Navbar currentActive={1} isLogin={props.isAuthenticated}></Navbar>
             </div>
             
             <div className={homepage.cover}>
@@ -81,10 +83,16 @@ const Home =()=> {
                             <div className={homepage.circle}></div>
                         </div>
                     </div>
-                    <img src="/images/girlstudyhomepage.jpg"></img>
             </div>
             
         </div>
     )
 }
-export default Home;
+Home.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps)(Home);

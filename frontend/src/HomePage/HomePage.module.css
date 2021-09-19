@@ -14,12 +14,7 @@
     background: white;
     border: 4px solid orange;
 }
-img{
-    width: 90%;
-    height: 85%;
-    opacity: 0.08;
-    position: absolute;
-  }
+
 
 .notejson1{
     height: 30%;
@@ -136,7 +131,4 @@ img{
     display: flex;
     height: 104px;
     margin-left: 28px;
-}
-.contacticon{
-
 }

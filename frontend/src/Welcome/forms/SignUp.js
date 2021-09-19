@@ -54,7 +54,7 @@ const SignUp = (props) => {
   };
   // Redirect if is Logged in
   if (props.isAuthenticated) {
-    return <Redirect to="/main" />;
+    return <Redirect to="/" />;
   }
   return (
     <>

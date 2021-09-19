@@ -1,13 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import classes from "./Welcome.module.css";
+import { Link, Redirect } from "react-router-dom";
 import SignIn from "./forms/SignIn";
 import SignUp from "./forms/SignUp";
 import Button from "../UI/Button/Button";
 import CustomModal from "../UI/Modal/Modal";
 import Lottie from "lottie-web";
 import Navbar from "../UI/Navbar/Navbar";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../actions/auth";
 let form;
-const Welcome = () => {
+const Welcome = (props) => {
   const [digits, digitsUpdater] = useState(null);
   const [openModal, modalStateUpdater] = useState(-1);
 
@@ -50,7 +54,9 @@ const Welcome = () => {
       animationData: require("./pumpkinjson.json"),
     });
   }, []);
-
+  if (props.isAuthenticated) {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <CustomModal isOpen={openModal !== -1} className={classes.modal}>
@@ -82,4 +88,11 @@ const Welcome = () => {
     </>
   );
 };
-export default Welcome;
+Welcome.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps)(Welcome);
