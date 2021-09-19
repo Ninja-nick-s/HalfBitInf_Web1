@@ -6,6 +6,7 @@ import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Alert from "../../UI/Alert/Alert";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
 import Lottie from "lottie-web";
 let timer = null;
@@ -47,13 +48,12 @@ const SignUp = (props) => {
     if (password !== password2) {
       props.setAlert("password do not match");
     } else {
-      console.log("success");
+      props.register({ name, email, password });
     }
   };
 
   return (
     <>
-      <Alert error={error} onClose={errorStateUpdater.bind(this, null)} />
       <header className={classes.header}>
         <h3>
           Let's get <span>started</span>
@@ -67,7 +67,6 @@ const SignUp = (props) => {
           name="name"
           value={name}
           onChange={(e) => onChange(e)}
-          required
         />
         <Input
           type="email"
@@ -75,7 +74,6 @@ const SignUp = (props) => {
           name="email"
           value={email}
           onChange={(e) => onChange(e)}
-          required
         />
         <div className={classes.siblingFields}>
           <Input
@@ -84,7 +82,6 @@ const SignUp = (props) => {
             name="password"
             value={password}
             onChange={(e) => onChange(e)}
-            required
           />
           <Input
             type="password"
@@ -92,7 +89,6 @@ const SignUp = (props) => {
             name="password2"
             value={password2}
             onChange={(e) => onChange(e)}
-            required
           />
         </div>
         {
@@ -122,6 +118,7 @@ const SignUp = (props) => {
 
 SignUp.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(SignUp);
+export default connect(null, { setAlert, register })(SignUp);
