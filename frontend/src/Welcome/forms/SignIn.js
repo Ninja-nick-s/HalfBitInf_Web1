@@ -2,9 +2,13 @@ import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
 import classes from "./Form.module.css";
 import { useEffect, useRef, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Alert from "../../UI/Alert/Alert";
 import Lottie from "lottie-web";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../../actions/auth";
 let timer = null;
 const SignIn = (props) => {
   const [error, errorStateUpdater] = useState(null);
@@ -37,11 +41,17 @@ const SignIn = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("success");
+    props.login(email, password);
   };
+
+  // Redirect if loggedin
+  if (props.isAuthenticated) {
+    return <Redirect to="/main" />;
+  }
+
   return (
     <>
-      <Alert error={error} onClose={errorStateUpdater.bind(this, null)} />
+      {/* <Alert error={error} onClose={errorStateUpdater.bind(this, null)} /> */}
       <header className={classes.header}>
         <h3>
           <span>Ready</span> to jump back in?
@@ -55,7 +65,6 @@ const SignIn = (props) => {
           name="email"
           value={email}
           onChange={(e) => onChange(e)}
-          required
         />
         <Input
           type="password"
@@ -63,7 +72,6 @@ const SignIn = (props) => {
           name="password"
           value={password}
           onChange={(e) => onChange(e)}
-          required
         />
 
         <div className={classes.formActions}>
@@ -94,4 +102,13 @@ const SignIn = (props) => {
     </>
   );
 };
-export default SignIn;
+
+SignIn.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, { login })(SignIn);

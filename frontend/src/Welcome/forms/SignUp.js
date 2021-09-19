@@ -2,6 +2,7 @@ import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
 import classes from "./Form.module.css";
 import { useEffect, useRef, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Alert from "../../UI/Alert/Alert";
 import { connect } from "react-redux";
@@ -51,7 +52,10 @@ const SignUp = (props) => {
       props.register({ name, email, password });
     }
   };
-
+  // Redirect if is Logged in
+  if (props.isAuthenticated) {
+    return <Redirect to="/main" />;
+  }
   return (
     <>
       <header className={classes.header}>
@@ -119,6 +123,11 @@ const SignUp = (props) => {
 SignUp.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert, register })(SignUp);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(SignUp);

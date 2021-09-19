@@ -10,6 +10,7 @@ import MainPage from "./mainPage/mainpage";
 import HomePage from "./HomePage/HomePage";
 import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
 import Alert from "./UI/Alert/Alert";
+
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
