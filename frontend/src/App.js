@@ -8,6 +8,7 @@ import {
 import Welcome from "./Welcome/Welcome";
 import MainPage from "./mainPage/mainpage";
 import HomePage from "./HomePage/HomePage";
+import PrivateRoute from "./routing/PrivateRoute";
 import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
 import Alert from "./UI/Alert/Alert";
 
@@ -38,7 +39,7 @@ function App() {
           >
             <Route path="/" component={HomePage} exact />
             <Route path="/login" component={Welcome} exact />
-            <Route path="/main" component={MainPage} exact />
+            <PrivateRoute path="/main" component={MainPage} exact />
           </Suspense>
         </Switch>
       </Router>
