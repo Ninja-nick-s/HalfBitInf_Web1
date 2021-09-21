@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Welcome from "./Welcome/Welcome";
 import MainPage from "./mainPage/mainpage";
+import CreatePage from "./mainPage/Create/create";
 import HomePage from "./HomePage/HomePage";
 import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
 import Alert from "./UI/Alert/Alert";
@@ -39,6 +40,7 @@ function App() {
             <Route path="/" component={HomePage} exact />
             <Route path="/login" component={Welcome} exact />
             <Route path="/main" component={MainPage} exact />
+            <Route path="/main/create" component={CreatePage} exact />
           </Suspense>
         </Switch>
       </Router>
