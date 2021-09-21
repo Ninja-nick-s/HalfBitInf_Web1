@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Welcome from "./Welcome/Welcome";
 import MainPage from "./mainPage/mainpage";
+import CreatePage from "./mainPage/Create/create";
 import HomePage from "./HomePage/HomePage";
 import PrivateRoute from "./routing/PrivateRoute";
 import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
@@ -39,7 +40,7 @@ function App() {
           >
             <Route path="/" component={HomePage} exact />
             <Route path="/login" component={Welcome} exact />
-            <PrivateRoute path="/main" component={MainPage} exact />
+
           </Suspense>
         </Switch>
       </Router>

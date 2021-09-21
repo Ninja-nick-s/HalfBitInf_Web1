@@ -12,7 +12,6 @@ const Navbar = (props) => {
   const Dashboard = useRef(null);
   const MainNote = useRef(null);
   const Logout = useRef(null);
-  const [isFirst,setIsfirst] = useState(0);
   useEffect(() => {
     Lottie.loadAnimation({
       container: Home.current,
@@ -53,7 +52,7 @@ const Navbar = (props) => {
         autoplay: true,
         animationData: require("../../General_Jsons/main.json"),
       });
-    
+      console.log("Ok",props.isLogin,props.currentActive)
   }, [props.isLogin]);
 
   return (
@@ -79,17 +78,17 @@ const Navbar = (props) => {
       {props.isLogin?
         <>
         
-        <NavLink to="/login" className={navbar.navlink} exact>
+        <NavLink to="/main" className={navbar.navlink} exact>
         <div
           className={`${navbar.icon} ${
-            props.currentActive == 2 ? navbar.active : null
+            props.currentActive == 3 ? navbar.active : null
           }`}
           ref={MainNote}
         ></div>
         <div className={navbar.namecover}>
           <div
             className={`${navbar.name} ${
-              props.currentActive == 2 ? navbar.active : null
+              props.currentActive == 3 ? navbar.active : null
             }`}
           >
             Note
@@ -99,14 +98,14 @@ const Navbar = (props) => {
         <NavLink to="/main" className={navbar.navlink} exact>
         <div
           className={`${navbar.icon} ${
-            props.currentActive == 3 ? navbar.active : null
+            props.currentActive == 4 ? navbar.active : null
           }`}
           ref={Dashboard}
         ></div>
         <div className={navbar.namecover}>
           <div
             className={`${navbar.name} ${
-              props.currentActive == 3 ? navbar.active : null
+              props.currentActive == 4 ? navbar.active : null
             }`}
           >
             Profile

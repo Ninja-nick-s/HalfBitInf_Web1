@@ -62,7 +62,7 @@ const Home =(props)=> {
             <div className={homepage.topright}> </div>
             <div className={homepage.bottomleft}> </div>
             <div className={homepage.navbar}>
-                <Navbar currentActive={1} isLogin={props.isAuthenticated}></Navbar>
+                <Navbar currentActive={1} isLogin={props.isAuthenticated==null?false:props.isAuthenticated}></Navbar>
             </div>
             
             <div className={homepage.cover}>

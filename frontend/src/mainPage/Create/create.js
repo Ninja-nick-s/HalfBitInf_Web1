@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react'
-import mainpage from './mainpage.module.css'
+import mainpage from './create.module.css'
 import Lottie from "lottie-web"
-import Navbar from "../UI/Navbar/Navbar";
-import MainNavbar from "../UI/Navbar/MainNavbar";
+import { Link, Redirect } from "react-router-dom";
+import Navbar from "../../UI/Navbar/Navbar";
+import MainNavbar from "../../UI/Navbar/MainNavbar";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Quill from "quill";
-import Button from '../UI/Button/Button';
+import Button from '../../UI/Button/Button';
 
-const Main =(props)=> {
-    const container = useRef(null)
+const Create =(props)=> {
     var toolbarOptions=[
         [{'font':[]}],
         ['bold','italic','underline','strike'],
@@ -23,13 +23,6 @@ const Main =(props)=> {
         [{'color':[]},{'background':[]}]
     ];
     useEffect(()=>{
-        Lottie.loadAnimation({
-        container:container.current,
-        renderer:'svg',
-        loop:true,
-        autoplay:true,
-        animationData:require('./nodatajson.json')
-        })
         var quill =new Quill('.editor',{
             modules:{
                 toolbar:toolbarOptions
@@ -37,8 +30,9 @@ const Main =(props)=> {
             theme:'snow'
         });
     },[])
-    
-    
+    if (!props.isAuthenticated) {
+      return <Redirect to="/" />;
+    }
     return(
         <div className={mainpage.main}>
             <div className={mainpage.topright}> </div>
@@ -47,7 +41,7 @@ const Main =(props)=> {
                 <Navbar currentActive={3} isLogin={props.isAuthenticated==null?false:props.isAuthenticated}></Navbar>
             </div>
             <div className={mainpage.mainnavbar}>
-                <MainNavbar currentActive={3} isLogin={props.isAuthenticated==null?false:props.isAuthenticated}></MainNavbar>
+                <MainNavbar currentActive={2}></MainNavbar>
             </div>
             <div className={mainpage.cover}>
                 <div className={mainpage.title}>NOTE KEEPER <span>&nbsp;TEXT&nbsp; </span> EDITOR</div>
@@ -56,7 +50,12 @@ const Main =(props)=> {
                         HEADING
                     </div>
                 </div>
-                <input className={mainpage.toolbar}/>
+                <div className={mainpage.headcover}>
+                    <input className={mainpage.toolbar}/>
+                    <input type="color"/>
+                    <input type="file" id="file-upload" accept="image/"/>
+                    <label htmlFor="file-upload" className={mainpage.imagebutton}>Image</label>
+                </div>
                 <div className={mainpage.name}>
                     <div className={mainpage.namecover}>
                         NOTE
@@ -65,7 +64,11 @@ const Main =(props)=> {
                 <div className={mainpage.editorarea}>
                     <div className={`${mainpage.area} ${"editor"}`}></div>
                     
-                    <div className={mainpage.buttoncover}><Button className={mainpage.savebutton}>Save</Button></div>
+                    <div className={mainpage.buttoncover}>
+                        <Button className={mainpage.savebutton}>Save</Button>
+                        <Button className={mainpage.cancelbutton}>Cancel</Button>
+                    </div>
+                    
                     
                 </div>
                 
@@ -74,11 +77,11 @@ const Main =(props)=> {
         </div>
     )
 }
-Main.propTypes = {
+Create.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(Create);

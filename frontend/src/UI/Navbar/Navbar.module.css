@@ -10,6 +10,7 @@
   background: white;
   cursor: pointer;
   transition: 0.1s ease;
+  overflow: hidden;
 }
 .icon:hover{
   transform: scale(1.1);
@@ -26,7 +27,7 @@
   align-items: center;
   border-radius: 2px;
   margin-bottom: 10px;
-  color: white;
+  color: transparent;
   font-weight: 600;
   width: 82%;
   height: 0px;
@@ -38,6 +39,7 @@
   transform: scale(1.1);
 }
 .navlink:hover .namecover .name{
+  color: white;
   height: 30px;
   transform: scale(1.1);
 }
