@@ -40,7 +40,8 @@ function App() {
           >
             <Route path="/" component={HomePage} exact />
             <Route path="/login" component={Welcome} exact />
-
+            <PrivateRoute path="/main" component={MainPage} exact />
+            <PrivateRoute path="/main/create" component={CreatePage} exact />
           </Suspense>
         </Switch>
       </Router>
