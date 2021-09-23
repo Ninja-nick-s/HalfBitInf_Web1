@@ -18,7 +18,7 @@ const Navbar = (props) => {
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("../../General_Jsons/home.json"),
+      animationData: require("../../General_Jsons/Navbar_jsons/home.json"),
     });
     
   }, []);
@@ -29,28 +29,28 @@ const Navbar = (props) => {
         renderer: "svg",
         loop: true,
         autoplay: true,
-        animationData: require("../../General_Jsons/login.json"),
+        animationData: require("../../General_Jsons/Navbar_jsons/login.json"),
       });
       Lottie.loadAnimation({
         container: Dashboard.current,
         renderer: "svg",
         loop: true,
         autoplay: true,
-        animationData: require("../../General_Jsons/profile.json"),
+        animationData: require("../../General_Jsons/Navbar_jsons/profile.json"),
       });
       Lottie.loadAnimation({
         container: Logout.current,
         renderer: "svg",
         loop: true,
         autoplay: true,
-        animationData: require("../../General_Jsons/logout.json"),
+        animationData: require("../../General_Jsons/Navbar_jsons/logout.json"),
       });
       Lottie.loadAnimation({
         container: MainNote.current,
         renderer: "svg",
         loop: true,
         autoplay: true,
-        animationData: require("../../General_Jsons/main.json"),
+        animationData: require("../../General_Jsons/Navbar_jsons/main.json"),
       });
       console.log("Ok",props.isLogin,props.currentActive)
   }, [props.isLogin]);

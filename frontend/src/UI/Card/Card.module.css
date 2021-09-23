@@ -1,0 +1,130 @@
+.maincard{
+    background: rgb(255, 255, 255);
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 420px;
+    border-radius: 6px;
+    border: 4px solid orange;
+    transition: 0.1s ease;
+    cursor: pointer;
+}
+
+.maincard:hover{
+    background:linear-gradient(45deg,rgb(247, 73, 209),rgb(255, 71, 138));
+    border-color: white;
+    box-shadow: 0px 0px 5px 1px grey;
+}
+.cover{
+    width: 100%;
+    height: 100%;
+}
+.image{
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: 0.1s ease-in;
+    
+}
+.maincard:hover .imagecont{
+    opacity: 0.05;
+}
+
+.imagecont{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 100%;
+    height: 60%;
+    transition: 0.1s ease-in;
+}
+.maincard:focus .imagecont{
+    width: 200%;
+}
+.cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 93%;
+    overflow: hidden;
+    transition: 0.1s ease-in;
+}
+.maincard:focus .cont{
+    height: 200%;
+}
+.title{
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top:2px solid rgb(253, 185, 39) ;
+    font-size: 20px;
+    width: 80%;
+    font-weight: 700;
+    color: rgb(83, 83, 83);
+    display: flex;
+    justify-content: center;
+}
+.desc{
+    color: rgb(184, 184, 184);
+    display: flex;
+    padding: 9px;
+    text-align: center;
+}
+.addcont{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addicon{
+    font-size: 61px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: orange;
+    color: white;
+    border-radius: 50%;
+}
+.maincard:hover .addicon{
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    
+    box-shadow: 0px 0px 10px 1px grey;
+}
+@keyframes rotate {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    25%{
+        transform: rotateZ(180deg);
+    }
+    75%{
+        transform: rotateZ(360deg);
+    }
+    100%{
+        transform: rotateZ(0deg);
+    }
+}
+.option{
+    width: 100%;
+    background: orange;
+    height: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 800;
+}
+.delete{
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 900;
+    font-size: 15px;
+    width: 100%;
+}
