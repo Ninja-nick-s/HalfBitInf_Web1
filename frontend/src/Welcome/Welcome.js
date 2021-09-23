@@ -44,14 +44,14 @@ const Welcome = (props) => {
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("./welcomejson.json"),
+      animationData: require("../General_Jsons/Welcome_jsons/welcomejson.json"),
     });
     Lottie.loadAnimation({
       container: container1.current,
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("./pumpkinjson.json"),
+      animationData: require("../General_Jsons/Welcome_jsons/pumpkinjson.json"),
     });
   }, []);
   if (props.isAuthenticated) {

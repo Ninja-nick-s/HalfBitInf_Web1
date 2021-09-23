@@ -16,21 +16,21 @@ const Navbar = (props) => {
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("../../General_Jsons/allfiles.json"),
+      animationData: require("../../General_Jsons/Navbar_jsons/allfiles.json"),
     });
     Lottie.loadAnimation({
       container: Create.current,
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("../../General_Jsons/create.json"),
+      animationData: require("../../General_Jsons/Navbar_jsons/create.json"),
     });
     Lottie.loadAnimation({
       container: Deleted.current,
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("../../General_Jsons/deleted.json"),
+      animationData: require("../../General_Jsons/Navbar_jsons/deleted.json"),
     });
       
     

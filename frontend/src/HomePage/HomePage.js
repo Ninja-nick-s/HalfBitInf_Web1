@@ -18,42 +18,42 @@ const Home =(props)=> {
             renderer:'svg',
             loop:true,
             autoplay:true,
-            animationData:require('./homepagejson2.json')
+            animationData:require('../General_Jsons/Homepage_jsons/homepagejson2.json')
         })
         Lottie.loadAnimation({
             container:MainBottomright.current,
             renderer:'svg',
             loop:true,
             autoplay:true,
-            animationData:require('./homepagejson3.json')
+            animationData:require('../General_Jsons/Homepage_jsons/homepagejson3.json')
         })
         Lottie.loadAnimation({
             container:MainBoardright.current,
             renderer:'svg',
             loop:true,
             autoplay:true,
-            animationData:require('./mainboardjson.json')
+            animationData:require('../General_Jsons/Homepage_jsons/mainboardjson.json')
         })
         Lottie.loadAnimation({
             container:facebook.current,
             renderer:'svg',
             loop:true,
             autoplay:true,
-            animationData:require('./facebookjson.json')
+            animationData:require('../General_Jsons/Homepage_jsons/facebookjson.json')
         })
         Lottie.loadAnimation({
             container:email.current,
             renderer:'svg',
             loop:true,
             autoplay:true,
-            animationData:require('./mailjson.json')
+            animationData:require('../General_Jsons/Homepage_jsons/mailjson.json')
         })
         Lottie.loadAnimation({
             container:instagram.current,
             renderer:'svg',
             loop:true,
             autoplay:true,
-            animationData:require('./instagramjson.json')
+            animationData:require('../General_Jsons/Homepage_jsons/instagramjson.json')
         })
     },[])
     

@@ -15,7 +15,6 @@
     background: rgb(255, 255, 255);
     border: 4px solid rgb(13, 208, 218);
     display: flex;
-    flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
     align-items: center;
@@ -26,28 +25,14 @@
     z-index: 2;
     top: 0;
 }
-.title{
-    color: white;
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: 900;
-    font-family: 'Acme', sans-serif;
-    text-shadow: -1px 1px 1px rgb(122 122 122);
-    width: 100%;
+.left{
     background: rgb(13, 208, 218);
-    padding: 10px 0px;
+    height: 100%;
+    flex: 0.2;
 }
-.foldername{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-    margin: 50px;
-    opacity: 1;
-}
-.addicon{
-    
+.right{
+    height: 100%;
+    flex: 0.8;
 }
 .topright{
     background: linear-gradient(45deg, orange , rgb(255, 177, 32));
