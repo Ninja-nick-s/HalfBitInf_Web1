@@ -25,10 +25,80 @@ router.post(
       const subject = await newSubject.save();
       res.json(subject);
     } catch (err) {
-      console.error(err.meassage);
+      console.error(err.message);
       res.status(500).send("Server Error");
     }
   }
 );
 
+router.get("/:user", auth, async (req, res) => {
+  try {
+    const subject = await Subject.find({ user: req.params.user });
+    if (!subject) {
+      return res.status(404).json({
+        msg: "subject not found",
+      });
+    }
+    res.json(subject);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    const subject = await Subject.findById(req.params.id);
+    if (!subject) {
+      return res.status(404).json({
+        msg: "subject not found",
+      });
+    }
+    // check user
+    if (subject.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "user not authorized" });
+    }
+    await subject.deleteOne({ _id: req.params.id });
+    res.json({ msg: "subject removed" });
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({
+        msg: "subject not found",
+      });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
+
+// router.get("/", auth, async (req, res) => {
+//   try {
+//     const subjects = await Subject.find().sort({ date: -1 });
+//     res.json(subjects);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+// router.get("/:id", auth, async (req, res) => {
+//     try {
+//       const subject = await Subject.findById(req.params.id);
+//       if (!subject) {
+//         return res.status(404).json({
+//           msg: "subject not found",
+//         });
+//       }
+//       res.json(subject);
+//     } catch (err) {
+//       console.error(err.message);
+//       if (err.kind === "ObjectId") {
+//         return res.status(404).json({
+//           msg: "subject not found",
+//         });
+//       }
+//       res.status(500).send("Server Error");
+//     }
+//   });
