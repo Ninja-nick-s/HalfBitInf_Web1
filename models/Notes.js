@@ -8,6 +8,7 @@ const NoteSchema = new Schema({
   },
   content: {
     type: String,
+    required: true,
     default: "Welcome to Note editor make your note here",
   },
   topic: {
