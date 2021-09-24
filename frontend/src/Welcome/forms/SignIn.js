@@ -64,6 +64,7 @@ const SignIn = (props) => {
           placeholder="Email"
           name="email"
           value={email}
+          isValid={true}
           onChange={(e) => onChange(e)}
         />
         <Input
@@ -71,6 +72,7 @@ const SignIn = (props) => {
           placeholder="Password"
           name="password"
           value={password}
+          isValid={true}
           onChange={(e) => onChange(e)}
         />
 

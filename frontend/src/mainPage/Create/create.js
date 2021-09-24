@@ -1,11 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
 import mainpage from './create.module.css'
-import Lottie from "lottie-web"
-import { Link, Redirect } from "react-router-dom";
-import Navbar from "../../UI/Navbar/Navbar";
-import MainNavbar from "../../UI/Navbar/MainNavbar";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import Quill from "quill";
 import Button from '../../UI/Button/Button';
 
@@ -30,19 +24,7 @@ const Create =(props)=> {
             theme:'snow'
         });
     },[])
-    if (!props.isAuthenticated) {
-      return <Redirect to="/" />;
-    }
     return(
-        <div className={mainpage.main}>
-            <div className={mainpage.topright}> </div>
-            <div className={mainpage.bottomleft}> </div>
-            <div className={mainpage.navbar}>
-                <Navbar currentActive={3} isLogin={props.isAuthenticated==null?false:props.isAuthenticated}></Navbar>
-            </div>
-            <div className={mainpage.mainnavbar}>
-                <MainNavbar currentActive={2}></MainNavbar>
-            </div>
             <div className={mainpage.cover}>
                 <div className={mainpage.title}>NOTE KEEPER <span>&nbsp;TEXT&nbsp; </span> EDITOR</div>
                 <div className={mainpage.name}>
@@ -52,9 +34,6 @@ const Create =(props)=> {
                 </div>
                 <div className={mainpage.headcover}>
                     <input className={mainpage.toolbar}/>
-                    <input type="color"/>
-                    <input type="file" id="file-upload" accept="image/"/>
-                    <label htmlFor="file-upload" className={mainpage.imagebutton}>Image</label>
                 </div>
                 <div className={mainpage.name}>
                     <div className={mainpage.namecover}>
@@ -66,7 +45,7 @@ const Create =(props)=> {
                     
                     <div className={mainpage.buttoncover}>
                         <Button className={mainpage.savebutton}>Save</Button>
-                        <Button className={mainpage.cancelbutton}>Cancel</Button>
+                        <Button className={mainpage.cancelbutton} onClick={props.onClose} >Cancel</Button>
                     </div>
                     
                     
@@ -74,14 +53,6 @@ const Create =(props)=> {
                 
             </div>
             
-        </div>
     )
 }
-Create.propTypes = {
-  isAuthenticated: PropTypes.bool,
-};
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-export default connect(mapStateToProps)(Create);
+export default Create;

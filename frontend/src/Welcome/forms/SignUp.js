@@ -70,6 +70,7 @@ const SignUp = (props) => {
           placeholder="Enter Name"
           name="name"
           value={name}
+          isValid={true}
           onChange={(e) => onChange(e)}
         />
         <Input
@@ -77,6 +78,7 @@ const SignUp = (props) => {
           placeholder="Email"
           name="email"
           value={email}
+          isValid={true}
           onChange={(e) => onChange(e)}
         />
         <div className={classes.siblingFields}>
@@ -85,6 +87,7 @@ const SignUp = (props) => {
             placeholder="Password"
             name="password"
             value={password}
+            isValid={true}
             onChange={(e) => onChange(e)}
           />
           <Input
@@ -92,6 +95,7 @@ const SignUp = (props) => {
             placeholder="Confirm Password"
             name="password2"
             value={password2}
+            isValid={true}
             onChange={(e) => onChange(e)}
           />
         </div>

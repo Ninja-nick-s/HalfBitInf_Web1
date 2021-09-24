@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import CustomModal from "../UI/Modal/Modal";
 import Folder from "./foldername/foldername";
+import Display from "./DisplayNote/DisplayNote";
+import Create from "./Create/create";
 let form;
 const Main =(props)=> {
     
@@ -25,14 +27,27 @@ const Main =(props)=> {
     },[])
     if (openModal === 0)
         form = ( <Folder onClose={modalStateUpdater.bind(this, -1)} changeState={modalStateUpdater} isOpen={openModal !== -1} /> );
+    if (openModal === 1)
+        form = ( <Create onClose={modalStateUpdater.bind(this, -1)} changeState={modalStateUpdater} isOpen={openModal !== -1} /> );
+    if (openModal === 2)
+        form = ( <Display onClose={modalStateUpdater.bind(this, -1)} changeState={modalStateUpdater} isOpen={openModal !== -1} /> );
     
-    function onClickAddButton(){
+    function onClickAddFolderButton(){
         modalStateUpdater(0);
-        console.log("click",openModal);
+    }
+    function onClickAddFilesButton(){
+        modalStateUpdater(1);
+        console.log("cliked")
+    }
+    function onClickDisplayButton(){
+        modalStateUpdater(2);
     }
     return(
         <>
-        <CustomModal isOpen={openModal !== -1} className={mainpage.modal}>
+        <CustomModal isOpen={openModal === 0} >
+            {form}
+        </CustomModal>
+        <CustomModal isOpen={openModal === 1 || openModal === 2} className={mainpage.modal}>
             {form}
         </CustomModal>
         <div className={mainpage.main}>
@@ -45,13 +60,13 @@ const Main =(props)=> {
 
                 <div className={mainpage.title}>ALL FOLDER</div>
                 <div className={mainpage.foldername}>
-                    <Card title="Database" desc="A database is a collection of information that is organized so that it can be easily accessed, managed and updated" imageurl="/images/back.png"/>
-                    <Card title="Database" desc="My database" imageurl="/images/back.png"/>
-                    <Card title="Database" desc="My database" imageurl="/images/back.png"/>
-                    <Card title="Database" desc="My database" imageurl="/images/back.png"/>
-                    <Card title="Database" desc="My database" imageurl="/images/back.png"/>
-                    <Card title="Database" desc="My database" imageurl="/images/back.png"/>
-                    <AddCard AddClick={onClickAddButton}/>
+                    <Card index={1} AddFiles={onClickAddFilesButton} AddFolder={onClickAddFolderButton} Display={onClickDisplayButton} title="Database" desc="A database is a collection of information that is organized so that it can be easily accessed, managed and updated" imageurl="/images/back.png"/>
+                    <Card index={2} AddFiles={onClickAddFilesButton} AddFolder={onClickAddFolderButton} Display={onClickDisplayButton} title="Flower" desc="My database A database is a collection of information that is organized so that it can be easily accessed, managed and updated" imageurl="/images/back.png"/>
+                    <Card index={3} AddFiles={onClickAddFilesButton} AddFolder={onClickAddFolderButton} Display={onClickDisplayButton} title="Tree" desc="My database" imageurl="/images/back.png"/>
+                    <Card index={4} AddFiles={onClickAddFilesButton} AddFolder={onClickAddFolderButton} Display={onClickDisplayButton} title="Database" desc="My database" imageurl="/images/back.png"/>
+                    <Card index={5} AddFiles={onClickAddFilesButton} AddFolder={onClickAddFolderButton} Display={onClickDisplayButton} title="Database" desc="My database" imageurl="/images/back.png"/>
+                    <Card index={6} AddFiles={onClickAddFilesButton} AddFolder={onClickAddFolderButton} Display={onClickDisplayButton} title="Database" desc="My database" imageurl="/images/back.png"/>
+                    <AddCard AddClick={onClickAddFolderButton}/>
                 </div>
             </div>
             
