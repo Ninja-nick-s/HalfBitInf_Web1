@@ -7,15 +7,64 @@
     align-items: center;
     height: 420px;
     border-radius: 6px;
-    border: 4px solid orange;
-    transition: 0.1s ease;
+    transition: 0.5s ease;
+    padding: 0px;
+    box-shadow: 0px 0px 5px 1px grey;
+    border: none;
+}
+.addcard{
+    background: rgb(255, 255, 255);
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 420px;
+    border-radius: 6px;
+    transition: 0.5s ease;
+    cursor: pointer;
+    padding: 0px;
+    box-shadow: 0px 0px 5px 1px grey;
+    border: none;
+}
+.top{
+    width: 100%;
+    flex: 0.1 1;
+    background: rgb(167, 109, 0);
+    display: flex;
+}
+.files{
+    width: 90%;
+    color: rgb(44, 44, 44);
+    display: flex;
+    justify-content: start;
+    font-weight: 500;
+    text-align: left;
+    font-family: 'Gemunu Libre', sans-serif;
+    margin-bottom: 10px;
+    background: rgb(255, 204, 109);
+    border: 2px solid rgb(255, 173, 21);
+    padding: 7px;
+    border-radius: 6px;
     cursor: pointer;
 }
+.bottom{
+    width: 100%;
+    flex: 0.9 1;
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
 
-.maincard:hover{
-    background:linear-gradient(45deg,rgb(247, 73, 209),rgb(255, 71, 138));
-    border-color: white;
-    box-shadow: 0px 0px 5px 1px grey;
+.filescover{
+    width: 0%;
+    height: 0%;
+    display: none;
+    flex-direction: column;
+    transform: rotateY(180deg);
+    background: orange;
 }
 .cover{
     width: 100%;
@@ -25,12 +74,9 @@
     width: 100%;
     height: 100%;
     opacity: 1;
-    transition: 0.1s ease-in;
-    
+    transition: 0.1s ease-in;   
 }
-.maincard:hover .imagecont{
-    opacity: 0.05;
-}
+
 
 .imagecont{
     display: flex;
@@ -40,36 +86,37 @@
     height: 60%;
     transition: 0.1s ease-in;
 }
-.maincard:focus .imagecont{
-    width: 200%;
-}
+
 .cont{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 93%;
+    height: 90%;
     overflow: hidden;
     transition: 0.1s ease-in;
 }
-.maincard:focus .cont{
-    height: 200%;
-}
 .title{
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top:2px solid rgb(253, 185, 39) ;
+    border-top: 2px solid rgb(253, 185, 39);
     font-size: 20px;
     width: 80%;
     font-weight: 700;
     color: rgb(83, 83, 83);
     display: flex;
     justify-content: center;
+    padding-top: 5px;
+    height: 8%;
+}
+.gap{
+    width: 100%;
+    height: 2%;
 }
 .desc{
     color: rgb(184, 184, 184);
     display: flex;
-    padding: 9px;
     text-align: center;
+    height: 26%;
+    overflow-y: scroll;
+    padding: 0px 10px;
 }
 .addcont{
     width: 100%;
@@ -85,15 +132,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: orange;
+    background: rgb(0, 179, 255);
     color: white;
     border-radius: 50%;
+    transition: 0.2s ease-in;
 }
-.maincard:hover .addicon{
+.addcard:hover .addicon{
+    background: orange;
     animation-name: rotate;
     animation-duration: 2s;
     animation-iteration-count: 1;
-    
     box-shadow: 0px 0px 10px 1px grey;
 }
 @keyframes rotate {
@@ -112,19 +160,22 @@
 }
 .option{
     width: 100%;
-    background: orange;
-    height: 7%;
+    background: rgb(13, 208, 218);
+    height: 10%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-weight: 800;
 }
-.delete{
+.buttons{
     background: none;
     border: none;
     color: white;
-    font-weight: 900;
+    font-weight: 500;
     font-size: 15px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.buttons:hover{
+    background: orange;
 }

@@ -1,5 +1,6 @@
 import Button from "../../UI/Button/Button";
 import Input from "../../UI/Input/Input";
+import TextArea from "../../UI/Textarea/Textarea";
 import classes from "./foldername.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
@@ -52,8 +53,15 @@ const SignIn = (props) => {
       </header>
       <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
         <Input
+          isValid={true}
           type="test"
           placeholder="Folder Name"
+          onChange={(e) => onChange(e)}
+        />
+        <TextArea
+          type="test"
+          isValid={true}
+          placeholder="Folder Desc"
           onChange={(e) => onChange(e)}
         />
         
