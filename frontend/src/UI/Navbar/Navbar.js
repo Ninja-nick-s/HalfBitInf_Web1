@@ -20,45 +20,44 @@ const Navbar = (props) => {
       autoplay: true,
       animationData: require("../../General_Jsons/Navbar_jsons/home.json"),
     });
-    
   }, []);
 
   useEffect(() => {
-      Lottie.loadAnimation({
-        container: Login.current,
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        animationData: require("../../General_Jsons/Navbar_jsons/login.json"),
-      });
-      Lottie.loadAnimation({
-        container: Dashboard.current,
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        animationData: require("../../General_Jsons/Navbar_jsons/profile.json"),
-      });
-      Lottie.loadAnimation({
-        container: Logout.current,
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        animationData: require("../../General_Jsons/Navbar_jsons/logout.json"),
-      });
-      Lottie.loadAnimation({
-        container: MainNote.current,
-        renderer: "svg",
-        loop: true,
-        autoplay: true,
-        animationData: require("../../General_Jsons/Navbar_jsons/main.json"),
-      });
-      console.log("Ok",props.isLogin,props.currentActive)
+    Lottie.loadAnimation({
+      container: Login.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../General_Jsons/Navbar_jsons/login.json"),
+    });
+    Lottie.loadAnimation({
+      container: Dashboard.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../General_Jsons/Navbar_jsons/profile.json"),
+    });
+    Lottie.loadAnimation({
+      container: Logout.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../General_Jsons/Navbar_jsons/logout.json"),
+    });
+    Lottie.loadAnimation({
+      container: MainNote.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../../General_Jsons/Navbar_jsons/main.json"),
+    });
+    //console.log("Ok", props.isLogin, props.currentActive);
   }, [props.isLogin]);
 
   return (
     <div className={navbar.main}>
       <NavLink to="/" className={navbar.navlink} exact>
-        <div 
+        <div
           className={`${navbar.icon} ${
             props.currentActive == 1 ? navbar.active : null
           }`}
@@ -75,85 +74,84 @@ const Navbar = (props) => {
         </div>
       </NavLink>
 
-      {props.isLogin?
+      {props.isLogin ? (
         <>
-        
-        <NavLink to="/main" className={navbar.navlink} exact>
-        <div
-          className={`${navbar.icon} ${
-            props.currentActive == 3 ? navbar.active : null
-          }`}
-          ref={MainNote}
-        ></div>
-        <div className={navbar.namecover}>
-          <div
-            className={`${navbar.name} ${
-              props.currentActive == 3 ? navbar.active : null
-            }`}
+          <NavLink to="/main" className={navbar.navlink} exact>
+            <div
+              className={`${navbar.icon} ${
+                props.currentActive == 3 ? navbar.active : null
+              }`}
+              ref={MainNote}
+            ></div>
+            <div className={navbar.namecover}>
+              <div
+                className={`${navbar.name} ${
+                  props.currentActive == 3 ? navbar.active : null
+                }`}
+              >
+                Note
+              </div>
+            </div>
+          </NavLink>
+          <NavLink to="/main" className={navbar.navlink} exact>
+            <div
+              className={`${navbar.icon} ${
+                props.currentActive == 4 ? navbar.active : null
+              }`}
+              ref={Dashboard}
+            ></div>
+            <div className={navbar.namecover}>
+              <div
+                className={`${navbar.name} ${
+                  props.currentActive == 4 ? navbar.active : null
+                }`}
+              >
+                Profile
+              </div>
+            </div>
+          </NavLink>
+          <NavLink
+            to="/"
+            onClick={props.logout}
+            className={navbar.navlink}
+            exact
           >
-            Note
-          </div>
-        </div>
-        </NavLink>
-        <NavLink to="/main" className={navbar.navlink} exact>
-        <div
-          className={`${navbar.icon} ${
-            props.currentActive == 4 ? navbar.active : null
-          }`}
-          ref={Dashboard}
-        ></div>
-        <div className={navbar.namecover}>
-          <div
-            className={`${navbar.name} ${
-              props.currentActive == 4 ? navbar.active : null
-            }`}
-          >
-            Profile
-          </div>
-        </div>
-      </NavLink>
-      <NavLink to="/" onClick={props.logout} className={navbar.navlink} exact>
-        <div
-          className={`${navbar.icon} ${
-            props.currentActive == 2 ? navbar.active : null
-          }`}
-          ref={Logout}
-        ></div>
-        <div className={navbar.namecover}>
-          <div
-            className={`${navbar.name} ${
-              props.currentActive == 2 ? navbar.active : null
-            }`}
-          >
-            Logout
-          </div>
-        </div>
-        </NavLink>
+            <div
+              className={`${navbar.icon} ${
+                props.currentActive == 2 ? navbar.active : null
+              }`}
+              ref={Logout}
+            ></div>
+            <div className={navbar.namecover}>
+              <div
+                className={`${navbar.name} ${
+                  props.currentActive == 2 ? navbar.active : null
+                }`}
+              >
+                Logout
+              </div>
+            </div>
+          </NavLink>
         </>
-      
-      :
+      ) : (
         <NavLink to="/login" className={navbar.navlink} exact>
-        <div
-          className={`${navbar.icon} ${
-            props.currentActive == 2 ? navbar.active : null
-          }`}
-          ref={Login}
-        ></div>
-        <div className={navbar.namecover}>
           <div
-            className={`${navbar.name} ${
+            className={`${navbar.icon} ${
               props.currentActive == 2 ? navbar.active : null
             }`}
-          >
-            Login
+            ref={Login}
+          ></div>
+          <div className={navbar.namecover}>
+            <div
+              className={`${navbar.name} ${
+                props.currentActive == 2 ? navbar.active : null
+              }`}
+            >
+              Login
+            </div>
           </div>
-        </div>
         </NavLink>
-      }
-
-      
-
-      
+      )}
     </div>
   );
 };

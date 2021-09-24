@@ -8,7 +8,11 @@ const SubjectSchema = new Schema({
   },
   subname: {
     type: String,
-    default: "New",
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
   },
 });
 

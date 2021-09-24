@@ -10,8 +10,9 @@ import Lottie from "lottie-web";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
-let timer = null;
-const SignIn = (props) => {
+import { addSubject } from "../../actions/subject";
+
+const SubjectForm = (props) => {
   const [error, errorStateUpdater] = useState(null);
   const toprightjson = useRef(null);
   const bottomleftjson = useRef(null);
@@ -32,20 +33,23 @@ const SignIn = (props) => {
     });
   }, []);
 
-  const [Tile, setTitle] = useState("");
-  const onChange = (e) =>{
-
-    setTitle(e);
-    console.log(e);
-  }
+  const [formData, setFormData] = useState({
+    subname: "",
+    description: "",
+  });
+  const { subname, description } = formData;
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    props.addSubject(subname, description);
+    props.onClose();
   };
 
   return (
     <>
-    <div className={classes.topright} ref={toprightjson}></div>
+      <div className={classes.topright} ref={toprightjson}></div>
       <header className={classes.header}>
         <h3>
           <span>Provide</span> Folder Name ...
@@ -53,18 +57,21 @@ const SignIn = (props) => {
       </header>
       <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
         <Input
+          name="subname"
           isValid={true}
           type="test"
           placeholder="Folder Name"
+          value={subname}
           onChange={(e) => onChange(e)}
         />
         <TextArea
+          name="description"
           type="test"
           isValid={true}
           placeholder="Folder Desc"
+          value={description}
           onChange={(e) => onChange(e)}
         />
-        
 
         <div className={classes.formActions}>
           <Button onClick={props.onClose}>Cancel</Button>
@@ -76,12 +83,8 @@ const SignIn = (props) => {
   );
 };
 
-SignIn.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+SubjectForm.propTypes = {
+  addSubject: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-export default connect(mapStateToProps, { login })(SignIn);
+export default connect(null, { addSubject })(SubjectForm);

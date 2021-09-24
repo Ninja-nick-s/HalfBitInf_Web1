@@ -20,6 +20,7 @@ router.post(
       const newSubject = new Subject({
         user: req.user.id,
         subname: req.body.subname,
+        description: req.body.description,
       });
 
       const subject = await newSubject.save();
@@ -31,9 +32,9 @@ router.post(
   }
 );
 
-router.get("/:user", auth, async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
-    const subject = await Subject.find({ user: req.params.user });
+    const subject = await Subject.find({ user: req.user.id });
     if (!subject) {
       return res.status(404).json({
         msg: "subject not found",
@@ -58,7 +59,7 @@ router.delete("/:id", auth, async (req, res) => {
     if (subject.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "user not authorized" });
     }
-    await subject.deleteOne({ _id: req.params.id });
+    await Subject.deleteOne({ _id: req.params.id });
     res.json({ msg: "subject removed" });
   } catch (err) {
     console.error(err.message);
