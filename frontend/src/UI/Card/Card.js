@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteSubject } from "../../actions/subject";
+import { getAllnote } from "../../actions/allnote";
+import { deleteTopic, deleteTopics } from "../../actions/note";
+import allnote from "../../reducers/allnote";
 import Topic from "./Topic";
 
 const Card = (props) => {
   const subid = props.id;
   const [ImageURL, SetImageURL] = useState("");
-
+  let it = 0;
   function setActive() {
     document.getElementById(`coverid ${props.index}`).style.display = "none";
     document.getElementById(`maincardid ${props.index}`).style.transform =
@@ -33,6 +36,24 @@ const Card = (props) => {
     props.AddFiles();
     props.setSubjectidcard(subid);
   }
+  // function deleteme(noteid) {
+  //   props.deleteTopic(noteid);
+  // }
+  function injectinid(id, topic, noteid) {
+    var filecontainer = document.createElement("div");
+    var innercontent = `<button onclick=${props.Display} className=${card.files}>
+    ${topic}
+  </button>
+  <button className=${card.filedelete}
+  >Delete</button>`;
+    filecontainer.innerHTML = innercontent;
+    document.getElementById(id).append(filecontainer);
+    console.log(filecontainer, id);
+  }
+  useEffect(() => {
+    props.getAllnote(subid);
+  }, [props.getAllnote]);
+
   useEffect(() => {
     axios
       .get(
@@ -40,18 +61,38 @@ const Card = (props) => {
       )
       .then((res) => SetImageURL(res.data.results[2].urls.full))
       .catch((err) => console.log(err));
+    setTimeout(() => {
+      props.allnote.allnotes.map((note) => {
+        if (it === props.index) {
+          console.log(note, " ", it, " ", props.index);
+          note.notes.map((onesub) => {
+            injectinid(props.index, onesub.topic, onesub._id);
+          });
+        }
+        it = it + 1;
+      });
+    }, 1000);
+
+    console.log(props.index, "fasf");
   }, []);
 
-  function injectinid(id, topic) {
-    var filecontainer = document.createElement("div");
-    var innercontent = `<button onClick=${props.Display} className=${card.files}>
-    ${topic}
-  </button>
-  <button className=${card.filedelete}>Delete</button>`;
-    filecontainer.innerHTML = innercontent;
-    document.getElementById(id).append(filecontainer);
-    console.log(filecontainer, id);
-  }
+  // useEffect(() => {
+  //   Topic(props.index, subid);
+  // });
+  // useEffect(() => {
+  //   props.getAllnote(subid);
+  // }, [props.getAllnote]);
+
+  // useEffect(() => {
+  // props.allnote.allnotes.map((x) => {
+  // if (it === props.index) {
+  //   console.log(x, " ", it, " ", props.index);
+  //   //props.injectinid(props.index, "hello");
+  // }
+  // it = it + 1;
+  // });
+  //console.log(props.index, "fasf");
+  // });
 
   return (
     <>
@@ -59,7 +100,7 @@ const Card = (props) => {
         <div className={card.filescover} id={`filecoverid ${props.index}`}>
           <div className={card.top}>
             <button className={card.buttons} onClick={setInactive}>
-              <i class="fas fa-times"></i>&nbsp; CLOSE
+              <i className="fas fa-times"></i>&nbsp; CLOSE
             </button>
             <button
               className={card.buttons}
@@ -70,15 +111,7 @@ const Card = (props) => {
               <i className="fas fa-plus-circle"></i>&nbsp; CREATE
             </button>
           </div>
-          <div className={card.bottom} id={`${props.index}`}>
-            <Topic
-              onClick={props.Display}
-              className={card.files}
-              subjectid={subid}
-              index={props.index}
-              injectinid={injectinid}
-            ></Topic>
-          </div>
+          <div className={card.bottom} id={`${props.index}`}></div>
         </div>
         <div className={card.cover} id={`coverid ${props.index}`}>
           <div className={card.cont}>
@@ -98,6 +131,7 @@ const Card = (props) => {
             <button
               onClick={() => {
                 props.deleteSubject(subid);
+                props.deleteTopics(subid);
               }}
               type="button"
               className={card.buttons}
@@ -114,10 +148,19 @@ Card.propTypes = {
   subject: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   deleteSubject: PropTypes.func.isRequired,
+  getAllnote: PropTypes.func.isRequired,
+  deleteTopic: PropTypes.func.isRequired,
+  deleteTopics: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  allnote: state.allnote,
 });
 
-export default connect(mapStateToProps, { deleteSubject })(Card);
+export default connect(mapStateToProps, {
+  deleteSubject,
+  getAllnote,
+  deleteTopic,
+  deleteTopics,
+})(Card);
