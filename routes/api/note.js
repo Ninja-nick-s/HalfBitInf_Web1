@@ -6,7 +6,7 @@ const Note = require("../../models/Notes");
 const User = require("../../models/User");
 
 router.post(
-  "/",
+  "/:subjectid",
   auth,
   check("content", "content is required").notEmpty(),
   async (req, res) => {
@@ -20,8 +20,8 @@ router.post(
       const newNote = new Note({
         content: req.body.content,
         topic: req.body.topic,
-        user: req.user.id,
-        subject: req.body.subject,
+        user: user.id,
+        subjectid: req.params.subjectid,
       });
 
       const note = await newNote.save();
@@ -33,11 +33,11 @@ router.post(
   }
 );
 
-router.get("/:user/:subject", auth, async (req, res) => {
+router.get("/:subjectid", auth, async (req, res) => {
   try {
     const notes = await Note.find({
-      user: req.params.user,
-      subject: req.params.subject,
+      user: req.user.id,
+      subjectid: req.params.subjectid,
     });
     if (!notes) {
       return res.status(404).json({
@@ -51,13 +51,9 @@ router.get("/:user/:subject", auth, async (req, res) => {
   }
 });
 
-router.get("/:user/:subject/:topic", auth, async (req, res) => {
+router.get("/single/:id", auth, async (req, res) => {
   try {
-    const note = await Note.findOne({
-      user: req.params.user,
-      subject: req.params.subject,
-      topic: req.params.topic,
-    });
+    const note = await Note.findById(req.params.id);
     if (!note) {
       return res.status(404).json({
         msg: "note not found",
@@ -66,14 +62,20 @@ router.get("/:user/:subject/:topic", auth, async (req, res) => {
     res.json(note);
   } catch (err) {
     console.error(err.message);
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({
+        msg: "note not found",
+      });
+    }
     res.status(500).send("Server Error");
   }
 });
-router.delete("/:user/:subject", auth, async (req, res) => {
+
+router.delete("/:subjectid", auth, async (req, res) => {
   try {
     const notes = await Note.find({
-      user: req.params.user,
-      subject: req.params.subject,
+      user: req.user.id,
+      subjectid: req.params.subjectid,
     });
     if (!notes) {
       return res.status(404).json({
@@ -82,8 +84,8 @@ router.delete("/:user/:subject", auth, async (req, res) => {
     }
 
     await Note.deleteMany({
-      user: req.params.user,
-      subject: req.params.subject,
+      user: req.user.id,
+      subjectid: req.params.subjectid,
     });
     res.json({ msg: "notes removed" });
   } catch (err) {
@@ -92,7 +94,7 @@ router.delete("/:user/:subject", auth, async (req, res) => {
   }
 });
 
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/single/:id", auth, async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
     if (!note) {
@@ -145,6 +147,25 @@ module.exports = router;
 //         msg: "note not found",
 //       });
 //     }
+//     res.status(500).send("Server Error");
+//   }
+// });
+
+// router.get("/:user/:subject/:topic", auth, async (req, res) => {
+//   try {
+//     const note = await Note.findOne({
+//       user: req.params.user,
+//       subject: req.params.subject,
+//       topic: req.params.topic,
+//     });
+//     if (!note) {
+//       return res.status(404).json({
+//         msg: "note not found",
+//       });
+//     }
+//     res.json(note);
+//   } catch (err) {
+//     console.error(err.message);
 //     res.status(500).send("Server Error");
 //   }
 // });

@@ -1,5 +1,5 @@
 import axios from "axios";
-import subject from "../reducers/subject";
+//import subject from "../reducers/subject";
 import { setAlert } from "./alert";
 import {
   DELETE_SUBJECT,

@@ -15,8 +15,9 @@ const NoteSchema = new Schema({
     type: String,
     default: "New topic",
   },
-  subject: {
-    type: String,
+  subjectid: {
+    type: Schema.Types.ObjectId,
+    ref: "Subject",
   },
   date: {
     type: Date,

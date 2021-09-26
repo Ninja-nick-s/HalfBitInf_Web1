@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link, Redirect } from "react-router-dom";
 import mainpage from "./mainpage.module.css";
 import Lottie from "lottie-web";
 import Navbar from "../UI/Navbar/Navbar";
@@ -11,11 +12,17 @@ import SubjectForm from "./foldername/foldername";
 import Display from "./DisplayNote/DisplayNote";
 import Create from "./Create/create";
 import { getSubjects } from "../actions/subject";
+import { getTopics } from "../actions/note";
 let form;
 const Main = (props) => {
   let it = 0;
+  const [subjectid, setSubjectid] = useState(null);
   const [openModal, modalStateUpdater] = useState(-1);
   const container = useRef(null);
+
+  function setSubjectidcard(subject_id) {
+    setSubjectid(subject_id);
+  }
   useEffect(() => {
     Lottie.loadAnimation({
       container: container.current,
@@ -30,6 +37,10 @@ const Main = (props) => {
     props.getSubjects();
   }, [props.getSubjects]);
 
+  // useEffect(() => {
+  //   props.getTopics(subid);
+  // }, [props.getTopics]);
+
   if (openModal === 0)
     form = (
       <SubjectForm
@@ -41,6 +52,7 @@ const Main = (props) => {
   if (openModal === 1)
     form = (
       <Create
+        subjectid={subjectid}
         onClose={modalStateUpdater.bind(this, -1)}
         changeState={modalStateUpdater}
         isOpen={openModal !== -1}
@@ -63,6 +75,9 @@ const Main = (props) => {
   }
   function onClickDisplayButton() {
     modalStateUpdater(2);
+  }
+  if (!props.isAuthenticated) {
+    return <Redirect to="/" />;
   }
   return (
     <>
@@ -93,6 +108,7 @@ const Main = (props) => {
                 AddFiles={onClickAddFilesButton}
                 AddFolder={onClickAddFolderButton}
                 Display={onClickDisplayButton}
+                setSubjectidcard={setSubjectidcard}
                 title={subject.subname}
                 desc={subject.description}
                 id={subject._id}
@@ -109,10 +125,13 @@ Main.propTypes = {
   isAuthenticated: PropTypes.bool,
   getSubjects: PropTypes.func.isRequired,
   subject: PropTypes.object.isRequired,
+  //getTopics: PropTypes.func.isRequired,
+  //note: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   subject: state.subject,
+  //note: state.note,
 });
 export default connect(mapStateToProps, { getSubjects })(Main);

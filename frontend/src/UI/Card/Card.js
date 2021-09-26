@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteSubject } from "../../actions/subject";
+import Topic from "./Topic";
+
 const Card = (props) => {
-  const id = props.id;
+  const subid = props.id;
   const [ImageURL, SetImageURL] = useState("");
+
   function setActive() {
     document.getElementById(`coverid ${props.index}`).style.display = "none";
     document.getElementById(`maincardid ${props.index}`).style.transform =
@@ -26,6 +29,10 @@ const Card = (props) => {
     document.getElementById(`filecoverid ${props.index}`).style.width = "0%";
     document.getElementById(`filecoverid ${props.index}`).style.height = "0%";
   }
+  function forCreate() {
+    props.AddFiles();
+    props.setSubjectidcard(subid);
+  }
   useEffect(() => {
     axios
       .get(
@@ -34,6 +41,18 @@ const Card = (props) => {
       .then((res) => SetImageURL(res.data.results[2].urls.full))
       .catch((err) => console.log(err));
   }, []);
+
+  function injectinid(id, topic) {
+    var filecontainer = document.createElement("div");
+    var innercontent = `<button onClick=${props.Display} className=${card.files}>
+    ${topic}
+  </button>
+  <button className=${card.filedelete}>Delete</button>`;
+    filecontainer.innerHTML = innercontent;
+    document.getElementById(id).append(filecontainer);
+    console.log(filecontainer, id);
+  }
+
   return (
     <>
       <div className={`${card.maincard}`} id={`maincardid ${props.index}`}>
@@ -42,84 +61,23 @@ const Card = (props) => {
             <button className={card.buttons} onClick={setInactive}>
               <i class="fas fa-times"></i>&nbsp; CLOSE
             </button>
-            <button className={card.buttons} onClick={props.AddFiles}>
+            <button
+              className={card.buttons}
+              onClick={forCreate}
+              subjectid={subid}
+            >
+              {/* <h6>{subid}</h6> */}
               <i className="fas fa-plus-circle"></i>&nbsp; CREATE
             </button>
           </div>
-          <div className={card.bottom}>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database The next generation of the web’s favorite icon library +
-              toolkit is now available as a Beta release! Try out the Free
-              version
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database
-            </button>
-            <button onClick={props.Display} className={card.files}>
-              Database
-            </button>
+          <div className={card.bottom} id={`${props.index}`}>
+            <Topic
+              onClick={props.Display}
+              className={card.files}
+              subjectid={subid}
+              index={props.index}
+              injectinid={injectinid}
+            ></Topic>
           </div>
         </div>
         <div className={card.cover} id={`coverid ${props.index}`}>
@@ -138,7 +96,9 @@ const Card = (props) => {
               <i className="fas fa-folder-open"></i>&nbsp; OPEN
             </button>
             <button
-              onClick={() => props.deleteSubject(id)}
+              onClick={() => {
+                props.deleteSubject(subid);
+              }}
               type="button"
               className={card.buttons}
             >
