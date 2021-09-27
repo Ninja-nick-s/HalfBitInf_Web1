@@ -47,7 +47,7 @@ const Create = (props) => {
     props.addNote(subid, topic, newcontent);
     console.log(subid, topic, content);
     props.onClose();
-    //window.location.reload(false);
+    window.location.reload(false);
     console.log("submit");
   };
 

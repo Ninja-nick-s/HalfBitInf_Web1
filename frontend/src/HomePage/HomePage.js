@@ -42,7 +42,7 @@ const Home =(props)=> {
             renderer:'svg',
             loop:true,
             autoplay:true,
-            animationData:require('../General_Jsons/Homepage_jsons/facebookjson.json')
+            animationData:require('../General_Jsons/Homepage_jsons/githubjson.json')
         })
         Lottie.loadAnimation({
             container:email.current,
@@ -79,8 +79,6 @@ const Home =(props)=> {
                         <NavLink to={props.isAuthenticated?"/main":"/login"} className={homepage.navlink} exact>Get Started</NavLink>
                         <div className={homepage.contact}>
                             <div className={homepage.contacticon} ref={facebook}></div>
-                            <div className={homepage.contacticon} ref={email}></div>
-                            <div className={homepage.contacticon} ref={instagram}></div>
                         </div>
                     </div>
                     <div className={homepage.right}>
