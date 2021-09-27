@@ -4,9 +4,13 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import navbar from "./Navbar.module.css";
+import useWindowDimensions from '../../utils/useWindowDimensions'
 import Lottie from "lottie-web";
+import MobileNav from "./MobileNav";
 
 const Navbar = (props) => {
+  
+  const { width } = useWindowDimensions()
   const Home = useRef(null);
   const Login = useRef(null);
   const Dashboard = useRef(null);
@@ -55,7 +59,13 @@ const Navbar = (props) => {
   }, [props.isLogin]);
 
   return (
-    <div className={navbar.main}>
+    <>
+    {width<800?
+    
+    <MobileNav isLogin={props.isLogin} logout={props.logout} currentActive={props.currentActive} />
+    
+    :
+      <div className={navbar.main}>
       <NavLink to="/" className={navbar.navlink} exact>
         <div
           className={`${navbar.icon} ${
@@ -90,23 +100,6 @@ const Navbar = (props) => {
                 }`}
               >
                 Note
-              </div>
-            </div>
-          </NavLink>
-          <NavLink to="/main" className={navbar.navlink} exact>
-            <div
-              className={`${navbar.icon} ${
-                props.currentActive == 4 ? navbar.active : null
-              }`}
-              ref={Dashboard}
-            ></div>
-            <div className={navbar.namecover}>
-              <div
-                className={`${navbar.name} ${
-                  props.currentActive == 4 ? navbar.active : null
-                }`}
-              >
-                Profile
               </div>
             </div>
           </NavLink>
@@ -153,6 +146,9 @@ const Navbar = (props) => {
         </NavLink>
       )}
     </div>
+    }
+    </>
+    
   );
 };
 Navbar.propTypes = {
