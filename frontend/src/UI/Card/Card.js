@@ -39,16 +39,41 @@ const Card = (props) => {
   // function deleteme(noteid) {
   //   props.deleteTopic(noteid);
   // }
+  function delete_note(noteid) {
+    props.deleteTopic(noteid);
+  }
+
   function injectinid(id, topic, noteid) {
+    var allcontainer = document.createElement("div");
     var filecontainer = document.createElement("div");
-    var innercontent = `<button onclick=${props.Display} className=${card.files}>
+    var deletecontainer = document.createElement("div");
+    allcontainer.setAttribute("class", `${card.allCardCon}`);
+    filecontainer.setAttribute("class", `${card.fileCardCon}`);
+    deletecontainer.setAttribute("class", `${card.deleteCardCon}`);
+    var innercontent = `<button class=${card.files}>
     ${topic}
-  </button>
-  <button className=${card.filedelete}
-  >Delete</button>`;
+  </button>`;
+    var innerdelete = `
+  <button class=${card.filedelete}
+  ><i class="fas fa-trash-alt"></i>&nbsp; Delete</button>`;
+
     filecontainer.innerHTML = innercontent;
-    document.getElementById(id).append(filecontainer);
-    console.log(filecontainer, id);
+    deletecontainer.innerHTML = innerdelete;
+    deletecontainer.onclick = function () {
+      delete_note(noteid);
+    };
+    allcontainer.append(filecontainer);
+    allcontainer.append(deletecontainer);
+    document.getElementById(id).append(allcontainer);
+    //   var filecontainer = document.createElement("div");
+    //   var innercontent = `<button onclick=${props.Display} className=${card.files}>
+    //   ${topic}
+    // </button>
+    // <button className=${card.filedelete}
+    // >Delete</button>`;
+    //   filecontainer.innerHTML = innercontent;
+    //   document.getElementById(id).append(filecontainer);
+    //   console.log(filecontainer, id);
   }
   useEffect(() => {
     props.getAllnote(subid);
