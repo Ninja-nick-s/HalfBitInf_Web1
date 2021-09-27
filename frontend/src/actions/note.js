@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
+import { getAllnote } from "./allnote";
 import {
   GET_TOPICS,
   NOTES_ERROR,
@@ -64,10 +65,11 @@ export const getNote = (id) => async (dispatch) => {
 
 export const deleteTopics = (subid) => async (dispatch) => {
   try {
+    const res = await axios.get(`/api/note/${subid}`);
     await axios.delete(`/api/note/${subid}`);
     dispatch({
       type: DELETE_TOPICS,
-      payload: subid,
+      payload: res.data,
     });
   } catch (err) {
     dispatch({
@@ -84,6 +86,7 @@ export const deleteTopic = (id) => async (dispatch) => {
       type: DELETE_TOPIC,
       payload: id,
     });
+    dispatch(setAlert("Note deleted", "success"));
   } catch (err) {
     dispatch({
       type: NOTES_ERROR,

@@ -2,18 +2,21 @@ import card from "./Card.module.css";
 import axios from "axios";
 import React, { useEffect, useState, Component } from "react";
 import { Link } from "react-router-dom";
+import CustomModal from "../Modal/Modal";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteSubject } from "../../actions/subject";
 import { getAllnote } from "../../actions/allnote";
-import { deleteTopic, deleteTopics } from "../../actions/note";
+import { deleteTopic, deleteTopics, getNote } from "../../actions/note";
 import allnote from "../../reducers/allnote";
 import Topic from "./Topic";
-
+import Display from "../../mainPage/DisplayNote/DisplayNote";
+let form;
 const Card = (props) => {
   const subid = props.id;
   const [ImageURL, SetImageURL] = useState("");
   let it = 0;
+  const [openModal, modalStateUpdater] = useState(-1);
   function setActive() {
     document.getElementById(`coverid ${props.index}`).style.display = "none";
     document.getElementById(`maincardid ${props.index}`).style.transform =
@@ -39,6 +42,13 @@ const Card = (props) => {
   function delete_note(noteid) {
     props.deleteTopic(noteid);
   }
+  function shownote(noteid) {
+    props.getNote(noteid);
+    // setTimeout(() => {
+    // console.log(props.note.notes);
+    // }, 1000);
+    modalStateUpdater(0);
+  }
 
   function injectinid(id, topic, noteid) {
     var allcontainer = document.createElement("div");
@@ -59,10 +69,12 @@ const Card = (props) => {
     deletecontainer.onclick = function () {
       delete_note(noteid);
     };
+    filecontainer.onclick = function () {
+      shownote(noteid);
+    };
     allcontainer.append(filecontainer);
     allcontainer.append(deletecontainer);
     document.getElementById(id).append(allcontainer);
-    
   }
   useEffect(() => {
     props.getAllnote(subid);
@@ -107,9 +119,18 @@ const Card = (props) => {
   // });
   //console.log(props.index, "fasf");
   // });
-
+  if (openModal === 0)
+    form = (
+      <Display
+        onClose={modalStateUpdater.bind(this, -1)}
+        changeState={modalStateUpdater}
+        isOpen={openModal !== -1}
+        noter={props.note.notes}
+      />
+    );
   return (
     <>
+      <CustomModal isOpen={openModal === 0}>{form}</CustomModal>
       <div className={`${card.maincard}`} id={`maincardid ${props.index}`}>
         <div className={card.filescover} id={`filecoverid ${props.index}`}>
           <div className={card.top}>
@@ -160,16 +181,19 @@ const Card = (props) => {
 };
 Card.propTypes = {
   subject: PropTypes.object.isRequired,
+  note: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   deleteSubject: PropTypes.func.isRequired,
   getAllnote: PropTypes.func.isRequired,
   deleteTopic: PropTypes.func.isRequired,
   deleteTopics: PropTypes.func.isRequired,
+  getNote: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   allnote: state.allnote,
+  note: state.note,
 });
 
 export default connect(mapStateToProps, {
@@ -177,4 +201,5 @@ export default connect(mapStateToProps, {
   getAllnote,
   deleteTopic,
   deleteTopics,
+  getNote,
 })(Card);

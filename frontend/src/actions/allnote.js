@@ -1,6 +1,6 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { GET_ALL_NOTE, ALL_NOTES_ERROR, GET_TOPICS } from "./types";
+import { GET_ALL_NOTE, ALL_NOTES_ERROR } from "./types";
 
 export const getAllnote = (subid) => async (dispatch) => {
   try {

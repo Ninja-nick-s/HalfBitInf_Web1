@@ -184,34 +184,33 @@
 }
 .filedelete {
   width: 90%;
-    background: rgb(255, 204, 109);
-    border: none;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    border-top: 2px solid rgb(8, 164, 255);
-    color: rgb(66, 144, 189);
-    margin-bottom: 10px;
-    padding: 10px 0px;
-    transition: 0.2s ease;
-    cursor: pointer;
+  background: rgb(255, 204, 109);
+  border: none;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: 2px solid rgb(8, 164, 255);
+  color: rgb(66, 144, 189);
+  margin-bottom: 10px;
+  padding: 10px 0px;
+  transition: 0.2s ease;
+  cursor: pointer;
 }
 .filedelete:hover {
   background: rgb(8, 164, 255);
   color: white;
 }
-.allCardCon{
+.allCardCon {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
 }
-.fileCardCon{
+.fileCardCon {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.deleteCardCon{
+.deleteCardCon {
   width: 100%;
   display: flex;
   justify-content: center;

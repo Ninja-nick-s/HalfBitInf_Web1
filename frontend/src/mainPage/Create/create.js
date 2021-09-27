@@ -5,10 +5,11 @@ import Button from "../../UI/Button/Button";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { addNote } from "../../actions/note";
-
+let quill;
 const Create = (props) => {
   const subid = props.subjectid;
-  console.log(subid);
+  //console.log(subid);
+
   var toolbarOptions = [
     [{ font: [] }],
     ["bold", "italic", "underline", "strike"],
@@ -21,8 +22,10 @@ const Create = (props) => {
     ["link", "image", "video", "formula", "code-block"],
     [{ color: [] }, { background: [] }],
   ];
+  //const [conten, setContent] = useState("");
+  //console.log(conten, setContent);
   useEffect(() => {
-    var quill = new Quill(".editor", {
+    quill = new Quill(".editor", {
       modules: {
         toolbar: toolbarOptions,
       },
@@ -31,16 +34,17 @@ const Create = (props) => {
   }, []);
   const [formData, setFormData] = useState({
     topic: "",
-    content: "dsaf",
   });
-  const { topic, content } = formData;
+  const { topic } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    //content = "hello";
-    props.addNote(subid, topic, content);
+    let content = quill.getContents();
+    //console.log(cont);
+    let newcontent = JSON.stringify(content);
+    props.addNote(subid, topic, newcontent);
     console.log(subid, topic, content);
     props.onClose();
     //window.location.reload(false);

@@ -1,12 +1,8 @@
 import {
   GET_ALL_NOTE,
   ALL_NOTES_ERROR,
-  //   GET_TOPICS,
-  //   NOTES_ERROR,
-  //   DELETE_TOPICS,
-  //   DELETE_TOPIC,
-  //   GET_NOTE,
-  //   ADD_NOTE,
+  DELETE_TOPIC,
+  DELETE_TOPICS,
 } from "../actions/types";
 
 //initial state
@@ -30,6 +26,14 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         ...state.allnotes.push({ notes: payload }),
+      };
+    case DELETE_TOPIC:
+      return {
+        ...state,
+      };
+    case DELETE_TOPICS:
+      return {
+        ...state,
       };
     case ALL_NOTES_ERROR:
       return {

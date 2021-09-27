@@ -37,18 +37,18 @@ export default function (state = initialstate, action) {
         notes: [...state.notes, payload],
         loading: false,
       };
-    case DELETE_TOPICS:
-      return {
-        ...state,
-        subjects: state.notes.filter((note) => note.subjectid !== payload),
-        loading: false,
-      };
-    case DELETE_TOPIC:
-      return {
-        ...state,
-        subjects: state.notes.filter((note) => note._id !== payload),
-        loading: false,
-      };
+    // case DELETE_TOPICS:
+    //   return {
+    //     ...state,
+    //     notes: state.notes.filter((note) => note.subjectid !== payload),
+    //     loading: false,
+    //   };
+    // case DELETE_TOPIC:
+    //   return {
+    //     ...state,
+    //     notes: state.notes.filter((note) => note._id !== payload),
+    //     loading: false,
+    //   };
     case NOTES_ERROR:
       return {
         ...state,
