@@ -4,7 +4,7 @@ const { check, validationResult } = require("express-validator/check");
 const auth = require("../../middleware/auth");
 const Note = require("../../models/Notes");
 const User = require("../../models/User");
-
+//
 router.post(
   "/:subjectid",
   auth,
@@ -18,8 +18,8 @@ router.post(
       const user = await User.findById(req.user.id).select("-password");
 
       const newNote = new Note({
-        content: req.body.content,
         topic: req.body.topic,
+        content: req.body.content,
         user: user.id,
         subjectid: req.params.subjectid,
       });

@@ -14,7 +14,7 @@ const initialstate = {
   loading: true,
   error: {},
 };
-
+//
 export default function (state = initialstate, action) {
   const { type, payload } = action;
 
@@ -29,6 +29,12 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         notes: payload,
+        loading: false,
+      };
+    case ADD_NOTE:
+      return {
+        ...state,
+        notes: [...state.notes, payload],
         loading: false,
       };
     case DELETE_TOPICS:

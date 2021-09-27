@@ -8,6 +8,29 @@ import {
   GET_NOTE,
   ADD_NOTE,
 } from "./types";
+//
+export const addNote = (subjectid, topic, content) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const formData = JSON.stringify({ topic, content });
+  try {
+    const res = await axios.post(`/api/note/${subjectid}`, formData, config);
+    dispatch({
+      type: ADD_NOTE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Note Added", "success"));
+  } catch (err) {
+    dispatch({
+      type: NOTES_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
 export const getTopics = (subid) => async (dispatch) => {
   try {

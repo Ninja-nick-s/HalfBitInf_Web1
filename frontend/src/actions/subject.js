@@ -22,7 +22,7 @@ export const getSubjects = () => async (dispatch) => {
     });
   }
 };
-
+//delete subject
 export const deleteSubject = (id) => async (dispatch) => {
   try {
     await axios.delete(`/api/subject/${id}`);
