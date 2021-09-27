@@ -97,7 +97,7 @@ const Main = (props) => {
           ></Navbar>
         </div>
         <div className={mainpage.cover}>
-          <div className={mainpage.title}>ALL FOLDER</div>
+          <div className={mainpage.title}><i className="fas fa-copy"></i>&nbsp; ALL FOLDER</div>
           <div className={mainpage.foldername}>
             {props.subject.subjects.map((subject) => (
               <Card

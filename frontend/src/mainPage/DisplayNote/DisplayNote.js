@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import mainpage from './Display.module.css'
 import Button from '../../UI/Button/Button';
+import Quill from "quill";
 
 var quill;
 const Display = (props) => {
@@ -32,7 +33,7 @@ const Display = (props) => {
     <div className={mainpage.cover}>
       <div className={mainpage.title}>{props.topic}</div>
       <button className={mainpage.buttons} onClick={props.onClose}>
-        <i class="fas fa-times"></i>
+        <i className="fas fa-times"></i>
       </button>
       <div className={mainpage.editorarea}>
         <div className={`${mainpage.area} ${"editor"}`}></div>

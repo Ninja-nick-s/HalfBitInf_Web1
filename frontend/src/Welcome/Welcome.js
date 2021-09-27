@@ -59,7 +59,7 @@ const Welcome = (props) => {
   }
   return (
     <>
-      <CustomModal isOpen={openModal !== -1} className={classes.modal}>
+      <CustomModal isOpen={openModal !== -1}>
         {form}
       </CustomModal>
       <div className={classes.welcome}>
@@ -70,6 +70,10 @@ const Welcome = (props) => {
         </div>
         <div className={classes.board}>
           <div className={classes.left}>
+          <div className={classes.circlewelcome_cover}>
+              <div className={classes.circlewelcome}></div>
+          </div>
+
             <div className={classes.bottomimg} ref={container1}></div>
             <div className={classes.btn}>
               <Button onClick={modalStateUpdater.bind(this, 0)}>Login</Button>

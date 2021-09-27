@@ -198,8 +198,9 @@
     }
     .mainboardjson{
         position: absolute;
-        top: -50%;
         left: 30%;
+        height: 30%;
+        top: 0;
     }
     .circle{
         transform: translate(26%, 33%);

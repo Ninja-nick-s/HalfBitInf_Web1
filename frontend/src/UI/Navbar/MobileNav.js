@@ -11,6 +11,9 @@ const MobileNav = (props) => {
             <NavLink to="/main" exact className={`${classes.link} `} activeClassName={`${props.currentActive===3?classes.activeLink:null}`}>
                 <i class="fas fa-clipboard"></i>
             </NavLink>
+            <NavLink to="/main/share" exact className={`${classes.link} `} activeClassName={`${props.currentActive===4?classes.activeLink:null}`}>
+            <i class="fas fa-share-alt"></i>
+            </NavLink>
             <NavLink className={`${classes.link}  ${classes.notifications}`} to="/" onClick={props.logout} activeClassName={`${props.currentActive===2?classes.activeLink:null}`}>
                 <i class="fas fa-sign-out-alt"></i>
             </NavLink>

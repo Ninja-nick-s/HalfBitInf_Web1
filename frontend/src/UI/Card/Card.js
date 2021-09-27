@@ -56,19 +56,31 @@ const Card = (props) => {
   function injectinid(id, topic, noteid,content) {
     var allcontainer = document.createElement("div");
     var filecontainer = document.createElement("div");
+    var fileoption = document.createElement("div");
     var deletecontainer = document.createElement("div");
+    var sharecontainer = document.createElement("div");
     allcontainer.setAttribute("class", `${card.allCardCon}`);
     filecontainer.setAttribute("class", `${card.fileCardCon}`);
+    fileoption.setAttribute("class", `${card.fileoptionCardCon}`);
+    sharecontainer.setAttribute("class", `${card.shareCardCon}`);
     deletecontainer.setAttribute("class", `${card.deleteCardCon}`);
     var innercontent = `<button class=${card.files}>
     ${topic}
   </button>`;
+  
+    var innershare = `
+    <button class="${card.fileoption} ${card.shareoption}" 
+    ><i class="fas fa-trash-alt"></i>&nbsp; Share</button>`;
+
     var innerdelete = `
-  <button class=${card.filedelete}
+  <button class="${card.fileoption} ${card.deleteoption}" 
   ><i class="fas fa-trash-alt"></i>&nbsp; Delete</button>`;
 
     filecontainer.innerHTML = innercontent;
+    sharecontainer.innerHTML = innershare;
     deletecontainer.innerHTML = innerdelete;
+    fileoption.append(sharecontainer);
+    fileoption.append(deletecontainer);
     deletecontainer.onclick = function () {
       delete_note(noteid);
     };
@@ -76,7 +88,7 @@ const Card = (props) => {
       shownote(content,topic);
     };
     allcontainer.append(filecontainer);
-    allcontainer.append(deletecontainer);
+    allcontainer.append(fileoption);
     document.getElementById(id).append(allcontainer);
   }
   useEffect(() => {
@@ -101,27 +113,8 @@ const Card = (props) => {
         it = it + 1;
       });
     }, 1000);
-
-    console.log(props.index, "fasf");
   }, []);
 
-  // useEffect(() => {
-  //   Topic(props.index, subid);
-  // });
-  // useEffect(() => {
-  //   props.getAllnote(subid);
-  // }, [props.getAllnote]);
-
-  // useEffect(() => {
-  // props.allnote.allnotes.map((x) => {
-  // if (it === props.index) {
-  //   console.log(x, " ", it, " ", props.index);
-  //   //props.injectinid(props.index, "hello");
-  // }
-  // it = it + 1;
-  // });
-  //console.log(props.index, "fasf");
-  // });
   if (openModal === 0)
     form = (
       <Display
