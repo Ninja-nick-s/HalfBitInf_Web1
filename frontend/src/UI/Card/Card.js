@@ -12,6 +12,8 @@ import allnote from "../../reducers/allnote";
 import Topic from "./Topic";
 import Display from "../../mainPage/DisplayNote/DisplayNote";
 let form;
+let contentname;
+let topicname;
 const Card = (props) => {
   const subid = props.id;
   const [ImageURL, SetImageURL] = useState("");
@@ -41,16 +43,17 @@ const Card = (props) => {
   }
   function delete_note(noteid) {
     props.deleteTopic(noteid);
+    setTimeout(()=>{window.location.reload(false);},2000)
+    
   }
-  function shownote(noteid) {
-    props.getNote(noteid);
-    // setTimeout(() => {
-    // console.log(props.note.notes);
-    // }, 1000);
+  function shownote(content,topic) {
+    console.log(content)
+    contentname = content;
+    topicname = topic;
     modalStateUpdater(0);
   }
 
-  function injectinid(id, topic, noteid) {
+  function injectinid(id, topic, noteid,content) {
     var allcontainer = document.createElement("div");
     var filecontainer = document.createElement("div");
     var deletecontainer = document.createElement("div");
@@ -70,7 +73,7 @@ const Card = (props) => {
       delete_note(noteid);
     };
     filecontainer.onclick = function () {
-      shownote(noteid);
+      shownote(content,topic);
     };
     allcontainer.append(filecontainer);
     allcontainer.append(deletecontainer);
@@ -92,7 +95,7 @@ const Card = (props) => {
         if (it === props.index) {
           console.log(note, " ", it, " ", props.index);
           note.notes.map((onesub) => {
-            injectinid(props.index, onesub.topic, onesub._id);
+            injectinid(props.index, onesub.topic, onesub._id,onesub.content);
           });
         }
         it = it + 1;
@@ -125,12 +128,13 @@ const Card = (props) => {
         onClose={modalStateUpdater.bind(this, -1)}
         changeState={modalStateUpdater}
         isOpen={openModal !== -1}
-        noter={props.note.notes}
+        noter={contentname}
+        topic = {topicname}
       />
     );
   return (
     <>
-      <CustomModal isOpen={openModal === 0}>{form}</CustomModal>
+      <CustomModal isOpen={openModal === 0} className={card.modal}>{form}</CustomModal>
       <div className={`${card.maincard}`} id={`maincardid ${props.index}`}>
         <div className={card.filescover} id={`filecoverid ${props.index}`}>
           <div className={card.top}>
@@ -167,6 +171,7 @@ const Card = (props) => {
               onClick={() => {
                 props.deleteSubject(subid);
                 props.deleteTopics(subid);
+                setTimeout(()=>{window.location.reload(false);},2000);
               }}
               type="button"
               className={card.buttons}

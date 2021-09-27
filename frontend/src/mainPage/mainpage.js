@@ -76,9 +76,6 @@ const Main = (props) => {
   function onClickDisplayButton() {
     modalStateUpdater(2);
   }
-  if (!props.isAuthenticated) {
-    return <Redirect to="/" />;
-  }
   return (
     <>
       <CustomModal isOpen={openModal === 0}>{form}</CustomModal>

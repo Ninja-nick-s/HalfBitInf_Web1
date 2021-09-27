@@ -18,8 +18,8 @@
     font-weight: 900;
     font-family: 'Acme', sans-serif;
     text-shadow: -1px 1px 1px rgb(122 122 122);
-    margin-top: 9px;
-    margin-bottom: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 .buttons{
     position: absolute;
@@ -30,4 +30,17 @@
     background: orange;
     border: none;
     color: white;
+}
+.editorarea{
+    width: 100%;
+    margin-bottom: 100px;
+    max-height: 60%;
+}
+.buttoncover{
+    display: flex;
+    margin-top: 10px;
+    justify-content: end;
+}
+.area{
+    height: 100%;
 }
