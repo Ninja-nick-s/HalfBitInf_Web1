@@ -55,3 +55,23 @@
   justify-content: center;
   transform: translateY(-20px);
 }
+
+/* -------------------------------------------------Mobile--------------------------------------------- */
+.mobilemain{
+  display: flex;
+  width: 100%;
+}
+.mobilenavlink{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.mobileicon{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: 0.1s ease;
+  overflow: hidden;
+}

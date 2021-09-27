@@ -36,9 +36,6 @@ const Card = (props) => {
     props.AddFiles();
     props.setSubjectidcard(subid);
   }
-  // function deleteme(noteid) {
-  //   props.deleteTopic(noteid);
-  // }
   function delete_note(noteid) {
     props.deleteTopic(noteid);
   }
@@ -65,15 +62,7 @@ const Card = (props) => {
     allcontainer.append(filecontainer);
     allcontainer.append(deletecontainer);
     document.getElementById(id).append(allcontainer);
-    //   var filecontainer = document.createElement("div");
-    //   var innercontent = `<button onclick=${props.Display} className=${card.files}>
-    //   ${topic}
-    // </button>
-    // <button className=${card.filedelete}
-    // >Delete</button>`;
-    //   filecontainer.innerHTML = innercontent;
-    //   document.getElementById(id).append(filecontainer);
-    //   console.log(filecontainer, id);
+    
   }
   useEffect(() => {
     props.getAllnote(subid);
