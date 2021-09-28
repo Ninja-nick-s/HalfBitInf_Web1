@@ -54,7 +54,6 @@ const Navbar = (props) => {
       autoplay: true,
       animationData: require("../../General_Jsons/Navbar_jsons/main.json"),
     });
-    //console.log("Ok", props.isLogin, props.currentActive);
   }, [props.isLogin]);
 
   return (

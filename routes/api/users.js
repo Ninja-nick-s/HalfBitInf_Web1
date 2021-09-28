@@ -59,10 +59,6 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
       await user.save();
 
-      //res.send("User registered");
-
-      //return jsonwebtoken
-
       const payload = {
         user: {
           id: user.id,
@@ -72,7 +68,7 @@ router.post(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 360000 }, //change it to 3600 while deploying
+        { expiresIn: 3600 },
         (err, token) => {
           if (err) throw err;
           res.json({ token });

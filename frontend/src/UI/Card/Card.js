@@ -1,17 +1,14 @@
 import card from "./Card.module.css";
 import axios from "axios";
-import React, { useEffect, useState, Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import CustomModal from "../Modal/Modal";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteSubject } from "../../actions/subject";
 import { getAllnote } from "../../actions/allnote";
 import { deleteTopic, deleteTopics, getNote } from "../../actions/note";
-import allnote from "../../reducers/allnote";
-import Topic from "./Topic";
 import Display from "../../mainPage/DisplayNote/DisplayNote";
-let form;
+let form; //
 let contentname;
 let topicname;
 let noterid;
@@ -45,11 +42,10 @@ const Card = (props) => {
   function delete_note(noteid) {
     props.deleteTopic(noteid);
     setTimeout(() => {
-      window.location.reload(false);
+      window.location.reload();
     }, 2000);
   }
   function shownote(content, topic, topicid) {
-    console.log(content);
     contentname = content;
     topicname = topic;
     noterid = topicid;
@@ -57,7 +53,6 @@ const Card = (props) => {
   }
   function share_note(topic_, content_) {
     props.onClickShareButton(topic_, content_);
-    // console.log(noteid);
   }
 
   function injectinid(id, topic, noteid, content) {
@@ -111,11 +106,15 @@ const Card = (props) => {
         `https://api.unsplash.com/search/photos?page=1&query=${props.title}&client_id=qdvH4yeGiC-wAUJOgaQ0dPdDvdXjRSIjWAO4yDsPD9Q`
       )
       .then((res) => SetImageURL(res.data.results[2].urls.full))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        SetImageURL(
+          `https://clickup.com/blog/wp-content/uploads/2020/01/note-taking.png`
+        );
+        console.log(err);
+      });
     setTimeout(() => {
       props.allnote.allnotes.map((note) => {
         if (it === props.index) {
-          console.log(note, " ", it, " ", props.index);
           note.notes.map((onesub) => {
             injectinid(props.index, onesub.topic, onesub._id, onesub.content);
           });
@@ -152,7 +151,6 @@ const Card = (props) => {
               onClick={forCreate}
               subjectid={subid}
             >
-              {/* <h6>{subid}</h6> */}
               <i className="fas fa-plus-circle"></i>&nbsp; CREATE
             </button>
           </div>
@@ -178,7 +176,7 @@ const Card = (props) => {
                 props.deleteSubject(subid);
                 props.deleteTopics(subid);
                 setTimeout(() => {
-                  window.location.reload(false);
+                  window.location.reload();
                 }, 2000);
               }}
               type="button"

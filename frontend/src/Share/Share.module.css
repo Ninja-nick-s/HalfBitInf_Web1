@@ -1,163 +1,168 @@
-.main{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.cover{
-    width: 90%;
-    height: 85%;
-    box-shadow: 0px 0px 68px -10px black;
-    z-index: 1;
-    background: rgb(255, 255, 255);
-    border: 4px solid orange;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    align-items: center;
+.cover {
+  width: 90%;
+  height: 85%;
+  box-shadow: 0px 0px 68px -10px black;
+  z-index: 1;
+  background: rgb(255, 255, 255);
+  border: 4px solid orange;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: center;
 }
-.modal{
-    width: 80%;
-    height: 80%;
+.modal {
+  width: 80%;
+  height: 80%;
 }
-.navbar{
-    position: absolute;
-    right: 2%;
-    z-index: 2;
-    top: 0;
+.navbar {
+  position: absolute;
+  right: 2%;
+  z-index: 2;
+  top: 0;
 }
-.title{
-    color: white;
-    display: flex;
-    justify-content: center;
-    font-size: 30px;
-    font-weight: 900;
-    font-family: 'Acme', sans-serif;
-    text-shadow: -1px 1px 1px rgb(122 122 122);
-    width: 100%;
-    background: orange;
-    padding: 10px 0px;
-    align-items: center;
+.title {
+  color: white;
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 900;
+  font-family: "Acme", sans-serif;
+  text-shadow: -1px 1px 1px rgb(122 122 122);
+  width: 100%;
+  background: orange;
+  padding: 10px 0px;
+  align-items: center;
 }
-.SharedFiles{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);;
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-    padding: 40px 0;
-    width: 95%;
-    opacity: 1;
+.SharedFiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  padding: 40px 0;
+  width: 95%;
+  opacity: 1;
 }
-.topright{
-    background: linear-gradient(45deg, orange , rgb(255, 177, 32));
-    position: absolute;
-    width: 30%;
-    height: 30%;
-    top: 0px;
-    left: 0px;
+.topright {
+  background: linear-gradient(45deg, orange, rgb(255, 177, 32));
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  top: 0px;
+  left: 0px;
 }
-.bottomleft{
-    background: linear-gradient(15deg, rgb(1, 113, 125) , rgb(149, 245, 230));
-    position: absolute;
-    width: 70%;
-    height: 70%;
-    bottom: 0px;
-    right:  0px;
+.bottomleft {
+  background: linear-gradient(15deg, rgb(1, 113, 125), rgb(149, 245, 230));
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  bottom: 0px;
+  right: 0px;
 }
 
-.SharedFiles{
-    display: flex;
-    flex-direction: column;
+.SharedFiles {
+  display: flex;
+  flex-direction: column;
 }
-.SharedCover{
-    padding: 14px 12px;
-    background: rgb(255, 182, 46);
-    border-radius: 6px;
+.SharedCover {
+  padding: 14px 12px;
+  background: rgb(255, 182, 46);
+  border-radius: 6px;
 }
-.SharefromCover{
-    padding-bottom: 5px;
-    color: rgb(159, 103, 0);
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: 600;
-    font-family: 'Gemunu Libre';
-    word-spacing: 5px;
+.SharefromCover {
+  padding-bottom: 5px;
+  color: rgb(159, 103, 0);
+  border-bottom: 2px solid white;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Gemunu Libre";
+  word-spacing: 5px;
 }
-.ShareFrom{
 
+.TopicDeleteCover {
+  display: flex;
 }
-.TopicDeleteCover{
-    display: flex;
+.TopicCover {
+  width: 80%;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-.TopicCover{
-    width: 80%;
-    overflow-y: scroll;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    
+
+.Topic {
+  background: none;
+  color: rgb(54, 54, 54);
+  border: none;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Acme", sans-serif;
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  border-radius: 3px;
+  cursor: pointer;
 }
-.Topic{
-    background: none;
-    color: rgb(54, 54, 54);
-    border: none;
-    font-size: 20px;
-    font-weight: 600;
-    font-family: 'Acme', sans-serif;
-    white-space: nowrap;
+.Topic:hover {
+  background: rgb(255, 206, 115);
+  color: rgb(0, 183, 255);
 }
-.DeleteCover{
-    width: 20%;
-    display: flex;
-    justify-content: center;
+.DeleteCover {
+  width: 20%;
+  display: flex;
+  justify-content: center;
 }
-.Delete{
-    padding: 10px 20px;
-    border: none;
-    background: rgb(255, 93, 52);
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
+.Delete {
+  padding: 10px 20px;
+  border: none;
+  background: rgb(255, 93, 52);
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
 }
-.Delete:hover{
-    background: rgb(182, 4, 4);
+.Delete:hover {
+  background: rgb(182, 4, 4);
 }
 @media screen and (max-width: 1600px) {
-    .foldername{
-        grid-template-columns: repeat(4, 1fr);
-    }
+  .foldername {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 @media screen and (max-width: 1200px) {
-    .foldername{
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .foldername {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media screen and (max-width: 900px) {
-    .foldername{
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .navbar{
-        right: 0%;
-    }
+  .foldername {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .navbar {
+    right: 0%;
+  }
 }
 @media screen and (max-width: 800px) {
-    .navbar{
-        left: 0;
-        bottom: 0;
-        top: 100%;
-    }
-    .cover{
-        width: 95%;
-        height: 95%;
-    }
+  .navbar {
+    left: 0;
+    bottom: 0;
+    top: 100%;
+  }
+  .cover {
+    width: 95%;
+    height: 95%;
+  }
 }
 @media screen and (max-width: 550px) {
-    .foldername{
-        grid-template-columns: repeat(1, 1fr);
-    }
+  .foldername {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

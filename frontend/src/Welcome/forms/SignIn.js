@@ -3,12 +3,12 @@ import Input from "../../UI/Input/Input";
 import classes from "./Form.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Alert from "../../UI/Alert/Alert";
 import Lottie from "lottie-web";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+//
 let timer = null;
 const SignIn = (props) => {
   const [error, errorStateUpdater] = useState(null);
@@ -51,7 +51,6 @@ const SignIn = (props) => {
 
   return (
     <>
-      {/* <Alert error={error} onClose={errorStateUpdater.bind(this, null)} /> */}
       <header className={classes.header}>
         <h3>
           <span>Ready</span> to jump back in?

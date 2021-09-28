@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, Redirect } from "react-router-dom";
 import mainpage from "./mainpage.module.css";
 import Lottie from "lottie-web";
 import Navbar from "../UI/Navbar/Navbar";
@@ -13,7 +12,7 @@ import Display from "./DisplayNote/DisplayNote";
 import Shareform from "./Share/Share";
 import Create from "./Create/create";
 import { getSubjects } from "../actions/subject";
-import { getTopics } from "../actions/note";
+//
 let topic_name;
 let content_s;
 let form;
@@ -39,10 +38,6 @@ const Main = (props) => {
   useEffect(() => {
     props.getSubjects();
   }, [props.getSubjects]);
-
-  // useEffect(() => {
-  //   props.getTopics(subid);
-  // }, [props.getTopics]);
 
   if (openModal === 0)
     form = (
@@ -90,7 +85,6 @@ const Main = (props) => {
     modalStateUpdater(2);
   }
   function onClickShareButton(topic_, content_) {
-    //console.log(topic_, content_);
     topic_name = topic_;
     content_s = content_;
     modalStateUpdater(3);
@@ -146,13 +140,10 @@ Main.propTypes = {
   isAuthenticated: PropTypes.bool,
   getSubjects: PropTypes.func.isRequired,
   subject: PropTypes.object.isRequired,
-  //getTopics: PropTypes.func.isRequired,
-  //note: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   subject: state.subject,
-  //note: state.note,
 });
 export default connect(mapStateToProps, { getSubjects })(Main);

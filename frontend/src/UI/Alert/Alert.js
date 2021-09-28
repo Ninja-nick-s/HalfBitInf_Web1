@@ -11,7 +11,6 @@ const Alert = (props) =>
     <Modal isOpen={props.alerts !== null} className={classes.modal}>
       <div className={classes.alert} key={alert.id}>
         <h2>{alert.msg}</h2>
-        {/* <Button onClick={props.onClose}>Okay</Button> */}
       </div>
     </Modal>
   ));

@@ -9,7 +9,7 @@ import Lottie from "lottie-web";
 import Navbar from "../UI/Navbar/Navbar";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../actions/auth";
+
 let form;
 const Welcome = (props) => {
   const [digits, digitsUpdater] = useState(null);
@@ -31,10 +31,6 @@ const Welcome = (props) => {
         isOpen={openModal !== -1}
       />
     );
-  // else if (openModal === 2)
-  //   form = <ForgotPassword onClose={modalStateUpdater.bind(this, -1)} changeState={modalStateUpdater} isOpen={openModal !== -1} />
-  // else if (openModal === 3)
-  //   form = <CompleteSignUp isOpen={openModal !== -1} />
 
   const container = useRef(null);
   const container1 = useRef(null);
@@ -59,9 +55,7 @@ const Welcome = (props) => {
   }
   return (
     <>
-      <CustomModal isOpen={openModal !== -1}>
-        {form}
-      </CustomModal>
+      <CustomModal isOpen={openModal !== -1}>{form}</CustomModal>
       <div className={classes.welcome}>
         <div className={classes.topright}> </div>
         <div className={classes.bottomleft}> </div>
@@ -70,9 +64,9 @@ const Welcome = (props) => {
         </div>
         <div className={classes.board}>
           <div className={classes.left}>
-          <div className={classes.circlewelcome_cover}>
+            <div className={classes.circlewelcome_cover}>
               <div className={classes.circlewelcome}></div>
-          </div>
+            </div>
 
             <div className={classes.bottomimg} ref={container1}></div>
             <div className={classes.btn}>

@@ -10,7 +10,6 @@ import MainPage from "./mainPage/mainpage";
 import SharePage from "./Share/Share";
 import HomePage from "./HomePage/HomePage";
 import PrivateRoute from "./routing/PrivateRoute";
-import LoadingSpinner from "./UI/LoadingSpinner/LoadingSpinner";
 import Alert from "./UI/Alert/Alert";
 
 //Redux
@@ -31,13 +30,7 @@ function App() {
       <Router>
         <Alert />
         <Switch>
-          <Suspense
-            fallback={
-              <div style={{ textAlign: "center" }}>
-                <LoadingSpinner />
-              </div>
-            }
-          >
+          <Suspense>
             <Route path="/" component={HomePage} exact />
             <Route path="/login" component={Welcome} exact />
             <PrivateRoute path="/main" component={MainPage} exact />

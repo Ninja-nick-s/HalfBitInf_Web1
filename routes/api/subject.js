@@ -73,33 +73,3 @@ router.delete("/:id", auth, async (req, res) => {
 });
 
 module.exports = router;
-
-// router.get("/", auth, async (req, res) => {
-//   try {
-//     const subjects = await Subject.find().sort({ date: -1 });
-//     res.json(subjects);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
-
-// router.get("/:id", auth, async (req, res) => {
-//     try {
-//       const subject = await Subject.findById(req.params.id);
-//       if (!subject) {
-//         return res.status(404).json({
-//           msg: "subject not found",
-//         });
-//       }
-//       res.json(subject);
-//     } catch (err) {
-//       console.error(err.message);
-//       if (err.kind === "ObjectId") {
-//         return res.status(404).json({
-//           msg: "subject not found",
-//         });
-//       }
-//       res.status(500).send("Server Error");
-//     }
-//   });

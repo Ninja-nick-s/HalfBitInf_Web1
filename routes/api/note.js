@@ -4,7 +4,7 @@ const { check, validationResult } = require("express-validator/check");
 const auth = require("../../middleware/auth");
 const Note = require("../../models/Notes");
 const User = require("../../models/User");
-//
+
 router.post(
   "/:subjectid",
   auth,
@@ -134,52 +134,3 @@ router.delete("/single/:id", auth, async (req, res) => {
 });
 
 module.exports = router;
-
-// router.get("/", auth, async (req, res) => {
-//   try {
-//     const notes = await Note.find().sort({ date: -1 });
-//     res.json(notes);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server Error");
-//   }
-// });
-
-// router.get("/:id", auth, async (req, res) => {
-//   try {
-//     const note = await Note.findById(req.params.id);
-//     if (!note) {
-//       return res.status(404).json({
-//         msg: "note not found",
-//       });
-//     }
-//     res.json(note);
-//   } catch (err) {
-//     console.error(err.message);
-//     if (err.kind === "ObjectId") {
-//       return res.status(404).json({
-//         msg: "note not found",
-//       });
-//     }
-//     res.status(500).send("Server Error");
-//   }
-// });
-
-// router.get("/:user/:subject/:topic", auth, async (req, res) => {
-//   try {
-//     const note = await Note.findOne({
-//       user: req.params.user,
-//       subject: req.params.subject,
-//       topic: req.params.topic,
-//     });
-//     if (!note) {
-//       return res.status(404).json({
-//         msg: "note not found",
-//       });
-//     }
-//     res.json(note);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server Error");
-//   }
-// });

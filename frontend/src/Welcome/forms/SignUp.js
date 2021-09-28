@@ -3,7 +3,6 @@ import Input from "../../UI/Input/Input";
 import classes from "./Form.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
 import Alert from "../../UI/Alert/Alert";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";

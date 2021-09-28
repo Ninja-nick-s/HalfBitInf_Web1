@@ -3,17 +3,12 @@ import Input from "../../UI/Input/Input";
 import TextArea from "../../UI/Textarea/Textarea";
 import classes from "./foldername.module.css";
 import { useEffect, useRef, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import LoadingSpinner from "../../UI/LoadingSpinner/LoadingSpinner";
-import Alert from "../../UI/Alert/Alert";
 import Lottie from "lottie-web";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
 import { addSubject } from "../../actions/subject";
 
 const SubjectForm = (props) => {
-  const [error, errorStateUpdater] = useState(null);
   const toprightjson = useRef(null);
   const bottomleftjson = useRef(null);
   useEffect(() => {
@@ -46,7 +41,7 @@ const SubjectForm = (props) => {
     props.addSubject(subname, description);
     props.onClose();
     setTimeout(() => {
-      window.location.reload(false);
+      window.location.reload();
     }, 2000);
   };
 

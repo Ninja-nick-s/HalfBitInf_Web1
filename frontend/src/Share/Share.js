@@ -24,7 +24,7 @@ const Share = (props) => {
   function deletesnote(shnoteid) {
     props.deletesharednotes(shnoteid);
     setTimeout(() => {
-      window.location.reload(false);
+      window.location.reload();
     }, 2000);
   }
   if (openModal === 0)
@@ -33,16 +33,13 @@ const Share = (props) => {
         onClose={modalStateUpdater.bind(this, -1)}
         changeState={modalStateUpdater}
         isOpen={openModal !== -1}
-        topic = {topicData}
-        content = {contentData}
+        topic={topicData}
+        content={contentData}
       />
     );
   return (
     <>
-      <CustomModal
-        isOpen={openModal === 0}
-        className={share.modal}
-      >
+      <CustomModal isOpen={openModal === 0} className={share.modal}>
         {form}
       </CustomModal>
       <div className={share.main}>
