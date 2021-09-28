@@ -13,7 +13,7 @@ const Navbar = (props) => {
   const { width } = useWindowDimensions()
   const Home = useRef(null);
   const Login = useRef(null);
-  const Dashboard = useRef(null);
+  const Share = useRef(null);
   const MainNote = useRef(null);
   const Logout = useRef(null);
   useEffect(() => {
@@ -35,11 +35,11 @@ const Navbar = (props) => {
       animationData: require("../../General_Jsons/Navbar_jsons/login.json"),
     });
     Lottie.loadAnimation({
-      container: Dashboard.current,
+      container: Share.current,
       renderer: "svg",
       loop: true,
       autoplay: true,
-      animationData: require("../../General_Jsons/Navbar_jsons/profile.json"),
+      animationData: require("../../General_Jsons/Navbar_jsons/sharejson.json"),
     });
     Lottie.loadAnimation({
       container: Logout.current,
@@ -97,6 +97,23 @@ const Navbar = (props) => {
               <div
                 className={`${navbar.name} ${
                   props.currentActive == 3 ? navbar.active : null
+                }`}
+              >
+                Note
+              </div>
+            </div>
+          </NavLink>
+          <NavLink to="/main/share" className={navbar.navlink} exact>
+            <div
+              className={`${navbar.icon} ${
+                props.currentActive == 4 ? navbar.active : null
+              }`}
+              ref={Share}
+            ></div>
+            <div className={navbar.namecover}>
+              <div
+                className={`${navbar.name} ${
+                  props.currentActive == 4 ? navbar.active : null
                 }`}
               >
                 Note

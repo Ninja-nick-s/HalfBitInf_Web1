@@ -118,12 +118,12 @@ span{
     height: 30%;
     top: 0px;
     left: 0px;
-  }
-  .bottomleft{
+}
+.bottomleft{
     background: linear-gradient(15deg, rgb(1, 113, 125) , rgb(149, 245, 230));
     position: absolute;
     width: 70%;
     height: 70%;
     bottom: 0px;
     right:  0px;
-  }
+}

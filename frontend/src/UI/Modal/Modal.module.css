@@ -64,3 +64,8 @@
     opacity: 0;
   }
 }
+@media screen and (max-width: 900px) {
+  .modal{
+    width: 80%;
+  }
+}
