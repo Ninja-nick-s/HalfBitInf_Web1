@@ -160,6 +160,9 @@
     width: 95%;
     height: 95%;
   }
+  .title {
+    font-size: 20px;
+  }
 }
 @media screen and (max-width: 550px) {
   .foldername {

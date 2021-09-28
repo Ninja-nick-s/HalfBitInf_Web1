@@ -30,14 +30,13 @@ const Display = (props) => {
     });
 
     quill.setContents(JSON.parse(props.noter).ops);
-    console.log(JSON.parse(props.noter));
   }, []);
   function onSubmit(e) {
     e.preventDefault();
     let editcontent = JSON.stringify(quill.getContents());
     props.editNote(props.noterid, editcontent);
     setTimeout(() => {
-      window.location.reload(false);
+      window.location.reload();
     }, 2000);
   }
   return (

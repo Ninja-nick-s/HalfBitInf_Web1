@@ -38,7 +38,6 @@ const Shareform = (props) => {
     e.preventDefault();
     props.addSharednote(props.content, props.topic, email);
     props.onClose();
-    console.log("submit");
   };
 
   return (

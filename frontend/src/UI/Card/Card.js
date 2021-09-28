@@ -94,7 +94,9 @@ const Card = (props) => {
     };
     allcontainer.append(filecontainer);
     allcontainer.append(fileoption);
-    document.getElementById(id).append(allcontainer);
+    setTimeout(() => {
+      document.getElementById(id).append(allcontainer);
+    }, 1500);
   }
   useEffect(() => {
     props.getAllnote(subid);
