@@ -169,6 +169,11 @@
         transform: translate(39px, 59px);
     }
 }
+@media screen and (max-width: 900px) {
+    .navbar{
+        right: 0%;
+    }
+}
 @media screen and (max-width: 800px) {
     .cover{
         width: 95%;
