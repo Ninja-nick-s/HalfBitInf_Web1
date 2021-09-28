@@ -10,10 +10,12 @@ import PropTypes from "prop-types";
 import CustomModal from "../UI/Modal/Modal";
 import SubjectForm from "./foldername/foldername";
 import Display from "./DisplayNote/DisplayNote";
-import Share from "./Share/Share";
+import Shareform from "./Share/Share";
 import Create from "./Create/create";
 import { getSubjects } from "../actions/subject";
 import { getTopics } from "../actions/note";
+let topic_name;
+let content_s;
 let form;
 const Main = (props) => {
   let it = 0;
@@ -69,10 +71,12 @@ const Main = (props) => {
     );
   if (openModal === 3)
     form = (
-      <Share
+      <Shareform
         onClose={modalStateUpdater.bind(this, -1)}
         changeState={modalStateUpdater}
         isOpen={openModal !== -1}
+        topic={topic_name}
+        content={content_s}
       />
     );
 
@@ -85,12 +89,17 @@ const Main = (props) => {
   function onClickDisplayButton() {
     modalStateUpdater(2);
   }
-  function onClickShareButton() {
+  function onClickShareButton(topic_, content_) {
+    //console.log(topic_, content_);
+    topic_name = topic_;
+    content_s = content_;
     modalStateUpdater(3);
   }
   return (
     <>
-      <CustomModal isOpen={openModal === 0 || openModal === 3}>{form}</CustomModal>
+      <CustomModal isOpen={openModal === 0 || openModal === 3}>
+        {form}
+      </CustomModal>
       <CustomModal
         isOpen={openModal === 1 || openModal === 2}
         className={mainpage.modal}
@@ -109,7 +118,9 @@ const Main = (props) => {
           ></Navbar>
         </div>
         <div className={mainpage.cover}>
-          <div className={mainpage.title}><i className="fas fa-copy"></i>&nbsp; ALL FOLDER</div>
+          <div className={mainpage.title}>
+            <i className="fas fa-copy"></i>&nbsp; ALL FOLDER
+          </div>
           <div className={mainpage.foldername}>
             {props.subject.subjects.map((subject) => (
               <Card

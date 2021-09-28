@@ -3,8 +3,23 @@ import share from "./Share.module.css";
 import Navbar from "../UI/Navbar/Navbar";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { getSharednotes, deletesharednotes } from "../actions/snote";
+
 let form;
+let gnote = [];
 const Share = (props) => {
+  useEffect(() => {
+    props.getSharednotes();
+  }, [props.getSharednotes]);
+  function showsharedNote(topic, content) {
+    console.log(topic, content);
+  }
+  function deletesnote(shnoteid) {
+    props.deletesharednotes(shnoteid);
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2000);
+  }
   return (
     <>
       <div className={share.main}>
@@ -19,53 +34,35 @@ const Share = (props) => {
           ></Navbar>
         </div>
         <div className={share.cover}>
-          <div className={share.title}><i class="fas fa-share-alt"></i>&nbsp; ALL SHARED FILES</div>
+          <div className={share.title}>
+            <i class="fas fa-share-alt"></i>&nbsp; ALL SHARED FILES
+          </div>
           <div className={share.SharedFiles}>
-          <div className={share.SharedCover}>
-                    <div className={share.SharefromCover}>
-                        <div className={share.ShareFrom}>
-                            From : ay70154@gmail.com
-                        </div>
-                    </div>
-                    <div className={share.TopicDeleteCover}>
-                        <div className={share.TopicCover}>
-                            <button className={share.Topic}>My data</button>
-                        </div>
-                        <div className={share.DeleteCover}>
-                            <button className={share.Delete}><i className="fas fa-trash-alt"></i>&nbsp; Delete</button>
-                        </div>
-                    </div>
+            {props.snote.snotes.map((snote) => (
+              <div className={share.SharedCover}>
+                <div className={share.SharefromCover}>
+                  <div className={share.ShareFrom}>From : {snote.recemail}</div>
                 </div>
-                <div className={share.SharedCover}>
-                    <div className={share.SharefromCover}>
-                        <div className={share.ShareFrom}>
-                            From : ay70154@gmail.com
-                        </div>
-                    </div>
-                    <div className={share.TopicDeleteCover}>
-                        <div className={share.TopicCover}>
-                            <button className={share.Topic}>My data</button>
-                        </div>
-                        <div className={share.DeleteCover}>
-                            <button className={share.Delete}><i className="fas fa-trash-alt"></i>&nbsp; Delete</button>
-                        </div>
-                    </div>
+                <div className={share.TopicDeleteCover}>
+                  <div className={share.TopicCover}>
+                    <button
+                      className={share.Topic}
+                      onClick={() => showsharedNote(snote.topic, snote.content)}
+                    >
+                      {snote.topic}
+                    </button>
+                  </div>
+                  <div className={share.DeleteCover}>
+                    <button
+                      className={share.Delete}
+                      onClick={() => deletesnote(snote._id)}
+                    >
+                      <i className="fas fa-trash-alt"></i>&nbsp; Delete
+                    </button>
+                  </div>
                 </div>
-                <div className={share.SharedCover}>
-                    <div className={share.SharefromCover}>
-                        <div className={share.ShareFrom}>
-                            From : ay70154@gmail.com
-                        </div>
-                    </div>
-                    <div className={share.TopicDeleteCover}>
-                        <div className={share.TopicCover}>
-                            <button className={share.Topic}>My data</button>
-                        </div>
-                        <div className={share.DeleteCover}>
-                            <button className={share.Delete}><i className="fas fa-trash-alt"></i>&nbsp; Delete</button>
-                        </div>
-                    </div>
-                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -73,10 +70,16 @@ const Share = (props) => {
   );
 };
 Share.propTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  getSharednotes: PropTypes.func.isRequired,
+  deletesharednotes: PropTypes.func.isRequired,
+  snote: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  snote: state.snote,
 });
-export default connect(mapStateToProps)(Share);
+export default connect(mapStateToProps, { getSharednotes, deletesharednotes })(
+  Share
+);

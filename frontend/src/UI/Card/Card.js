@@ -55,9 +55,9 @@ const Card = (props) => {
     noterid = topicid;
     modalStateUpdater(0);
   }
-  function share_note(noteid) {
-    props.onClickShareButton();
-    console.log(noteid);
+  function share_note(topic_, content_) {
+    props.onClickShareButton(topic_, content_);
+    // console.log(noteid);
   }
 
   function injectinid(id, topic, noteid, content) {
@@ -92,7 +92,7 @@ const Card = (props) => {
       delete_note(noteid);
     };
     sharecontainer.onclick = function () {
-      share_note(noteid);
+      share_note(topic, content);
     };
     filecontainer.onclick = function () {
       shownote(content, topic, noteid);

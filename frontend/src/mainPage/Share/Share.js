@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import Lottie from "lottie-web";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
+import { addSharednote } from "../../actions/snote";
 let timer = null;
-const SignIn = (props) => {
+const Shareform = (props) => {
   const container = useRef(null);
   const container1 = useRef(null);
   useEffect(() => {
@@ -26,6 +26,21 @@ const SignIn = (props) => {
       animationData: require("./Jsons/share2.json"),
     });
   }, []);
+
+  const [formData, setFormData] = useState({
+    email: "",
+  });
+  const { email } = formData;
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    props.addSharednote(props.content, props.topic, email);
+    props.onClose();
+    console.log("submit");
+  };
+
   return (
     <>
       {/* <Alert error={error} onClose={errorStateUpdater.bind(this, null)} /> */}
@@ -37,27 +52,32 @@ const SignIn = (props) => {
       <div className={classes.topright} ref={container}></div>
       <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
         <Input
+          name="email"
           type="email"
-          placeholder="Email"
+          placeholder="Enter email to share with"
           isValid={true}
+          onChange={(e) => onChange(e)}
+          value={email}
         />
         <div className={classes.formActions}>
           <Button onClick={props.onClose}>Cancel</Button>
-          <Button type="submit"><i className="fas fa-share-alt"></i>&nbsp; Share</Button>
+          <Button type="submit">
+            <i className="fas fa-share-alt"></i>&nbsp; Share
+          </Button>
         </div>
       </form>
-      
+
       <div className={classes.bottomleft} ref={container1}></div>
     </>
   );
 };
 
-SignIn.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
+Shareform.propTypes = {
+  addSharednote: PropTypes.func.isRequired,
+  snote: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  snote: state.snote,
 });
-export default connect(mapStateToProps, { login })(SignIn);
+export default connect(mapStateToProps, { addSharednote })(Shareform);

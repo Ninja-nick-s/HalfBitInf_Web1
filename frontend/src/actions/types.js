@@ -20,3 +20,7 @@ export const ADD_NOTE = "ADD_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
 export const GET_ALL_NOTE = "GET_ALL_NOTE";
 export const ALL_NOTES_ERROR = "ALL_NOTES_ERROR";
+export const GET_SHARED_NOTES = "GET_SHARED_NOTES";
+export const SHARED_NOTES_ERROR = "SHARED_NOTES_ERROR";
+export const ADD_SHARED_NOTE = "ADD_SHARED_NOTE";
+export const DELETE_SHARED_NOTE = "DELETE_SHARED_NOTE";
