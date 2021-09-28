@@ -55,6 +55,10 @@ const Card = (props) => {
     noterid = topicid;
     modalStateUpdater(0);
   }
+  function share_note(noteid) {
+    props.onClickShareButton();
+    console.log(noteid);
+  }
 
   function injectinid(id, topic, noteid, content) {
     var allcontainer = document.createElement("div");
@@ -73,7 +77,7 @@ const Card = (props) => {
 
     var innershare = `
     <button class="${card.fileoption} ${card.shareoption}" 
-    ><i class="fas fa-trash-alt"></i>&nbsp; Share</button>`;
+    ><i class="fas fa-share-alt"></i>&nbsp; Share</button>`;
 
     var innerdelete = `
   <button class="${card.fileoption} ${card.deleteoption}" 
@@ -86,6 +90,9 @@ const Card = (props) => {
     fileoption.append(deletecontainer);
     deletecontainer.onclick = function () {
       delete_note(noteid);
+    };
+    sharecontainer.onclick = function () {
+      share_note(noteid);
     };
     filecontainer.onclick = function () {
       shownote(content, topic, noteid);

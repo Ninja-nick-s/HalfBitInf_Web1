@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import CustomModal from "../UI/Modal/Modal";
 import SubjectForm from "./foldername/foldername";
 import Display from "./DisplayNote/DisplayNote";
+import Share from "./Share/Share";
 import Create from "./Create/create";
 import { getSubjects } from "../actions/subject";
 import { getTopics } from "../actions/note";
@@ -66,6 +67,14 @@ const Main = (props) => {
         isOpen={openModal !== -1}
       />
     );
+  if (openModal === 3)
+    form = (
+      <Share
+        onClose={modalStateUpdater.bind(this, -1)}
+        changeState={modalStateUpdater}
+        isOpen={openModal !== -1}
+      />
+    );
 
   function onClickAddFolderButton() {
     modalStateUpdater(0);
@@ -76,9 +85,12 @@ const Main = (props) => {
   function onClickDisplayButton() {
     modalStateUpdater(2);
   }
+  function onClickShareButton() {
+    modalStateUpdater(3);
+  }
   return (
     <>
-      <CustomModal isOpen={openModal === 0}>{form}</CustomModal>
+      <CustomModal isOpen={openModal === 0 || openModal === 3}>{form}</CustomModal>
       <CustomModal
         isOpen={openModal === 1 || openModal === 2}
         className={mainpage.modal}
@@ -106,6 +118,7 @@ const Main = (props) => {
                 AddFolder={onClickAddFolderButton}
                 Display={onClickDisplayButton}
                 setSubjectidcard={setSubjectidcard}
+                onClickShareButton={onClickShareButton}
                 title={subject.subname}
                 desc={subject.description}
                 id={subject._id}

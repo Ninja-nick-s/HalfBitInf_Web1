@@ -1,0 +1,47 @@
+.topright{
+    width: 24%;
+    position: absolute;
+    right: -43px;
+    top: -65px;
+}
+.bottomleft{
+    width: 20%;
+    position: absolute;
+    left: -38px;
+    bottom: -32px;
+}
+.header h3 {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 500;
+  }
+  .header span {
+    color: orange;
+  }
+  .form {
+    row-gap: 10px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  .formActions {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .formActions button {
+    width: 40%;
+  }
+
+  .siblingFields :first-child,
+  .formActions :first-child {
+    border-radius: 20px 0 0 20px;
+  }
+  .siblingFields :last-child,
+  .formActions :last-child {
+    border-radius: 0 20px 20px 0;
+  }
+  
