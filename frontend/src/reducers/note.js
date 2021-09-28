@@ -5,6 +5,7 @@ import {
   DELETE_TOPIC,
   GET_NOTE,
   ADD_NOTE,
+  EDIT_NOTE,
 } from "../actions/types";
 
 //initial state
@@ -35,6 +36,12 @@ export default function (state = initialstate, action) {
       return {
         ...state,
         notes: [...state.notes, payload],
+        loading: false,
+      };
+    case EDIT_NOTE:
+      return {
+        ...state,
+        notes: payload,
         loading: false,
       };
     // case DELETE_TOPICS:

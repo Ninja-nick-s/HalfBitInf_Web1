@@ -14,6 +14,7 @@ import Display from "../../mainPage/DisplayNote/DisplayNote";
 let form;
 let contentname;
 let topicname;
+let noterid;
 const Card = (props) => {
   const subid = props.id;
   const [ImageURL, SetImageURL] = useState("");
@@ -43,17 +44,19 @@ const Card = (props) => {
   }
   function delete_note(noteid) {
     props.deleteTopic(noteid);
-    setTimeout(()=>{window.location.reload(false);},2000)
-    
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2000);
   }
-  function shownote(content,topic) {
-    console.log(content)
+  function shownote(content, topic, topicid) {
+    console.log(content);
     contentname = content;
     topicname = topic;
+    noterid = topicid;
     modalStateUpdater(0);
   }
 
-  function injectinid(id, topic, noteid,content) {
+  function injectinid(id, topic, noteid, content) {
     var allcontainer = document.createElement("div");
     var filecontainer = document.createElement("div");
     var fileoption = document.createElement("div");
@@ -67,7 +70,7 @@ const Card = (props) => {
     var innercontent = `<button class=${card.files}>
     ${topic}
   </button>`;
-  
+
     var innershare = `
     <button class="${card.fileoption} ${card.shareoption}" 
     ><i class="fas fa-trash-alt"></i>&nbsp; Share</button>`;
@@ -85,7 +88,7 @@ const Card = (props) => {
       delete_note(noteid);
     };
     filecontainer.onclick = function () {
-      shownote(content,topic);
+      shownote(content, topic, noteid);
     };
     allcontainer.append(filecontainer);
     allcontainer.append(fileoption);
@@ -107,7 +110,7 @@ const Card = (props) => {
         if (it === props.index) {
           console.log(note, " ", it, " ", props.index);
           note.notes.map((onesub) => {
-            injectinid(props.index, onesub.topic, onesub._id,onesub.content);
+            injectinid(props.index, onesub.topic, onesub._id, onesub.content);
           });
         }
         it = it + 1;
@@ -122,12 +125,15 @@ const Card = (props) => {
         changeState={modalStateUpdater}
         isOpen={openModal !== -1}
         noter={contentname}
-        topic = {topicname}
+        topic={topicname}
+        noterid={noterid}
       />
     );
   return (
     <>
-      <CustomModal isOpen={openModal === 0} className={card.modal}>{form}</CustomModal>
+      <CustomModal isOpen={openModal === 0} className={card.modal}>
+        {form}
+      </CustomModal>
       <div className={`${card.maincard}`} id={`maincardid ${props.index}`}>
         <div className={card.filescover} id={`filecoverid ${props.index}`}>
           <div className={card.top}>
@@ -164,7 +170,9 @@ const Card = (props) => {
               onClick={() => {
                 props.deleteSubject(subid);
                 props.deleteTopics(subid);
-                setTimeout(()=>{window.location.reload(false);},2000);
+                setTimeout(() => {
+                  window.location.reload(false);
+                }, 2000);
               }}
               type="button"
               className={card.buttons}

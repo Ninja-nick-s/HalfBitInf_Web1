@@ -45,6 +45,9 @@ const SubjectForm = (props) => {
     e.preventDefault();
     props.addSubject(subname, description);
     props.onClose();
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2000);
   };
 
   return (

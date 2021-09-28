@@ -17,5 +17,6 @@ export const DELETE_TOPICS = "DELETE_TOPICS";
 export const DELETE_TOPIC = "DELETE_TOPIC";
 export const GET_NOTE = "GET_NOTE";
 export const ADD_NOTE = "ADD_NOTE";
+export const EDIT_NOTE = "EDIT_NOTE";
 export const GET_ALL_NOTE = "GET_ALL_NOTE";
 export const ALL_NOTES_ERROR = "ALL_NOTES_ERROR";

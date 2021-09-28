@@ -1,10 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react'
-import mainpage from './Display.module.css'
-import Button from '../../UI/Button/Button';
+import React, { useEffect, useState, useRef } from "react";
+import mainpage from "./Display.module.css";
+import Button from "../../UI/Button/Button";
 import Quill from "quill";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { editNote } from "../../actions/note";
 
 var quill;
 const Display = (props) => {
+  //console.log(props.noterid);
   var toolbarOptions = [
     [{ font: [] }],
     ["bold", "italic", "underline", "strike"],
@@ -20,15 +24,22 @@ const Display = (props) => {
   useEffect(() => {
     quill = new Quill(".editor", {
       modules: {
-        toolbar:toolbarOptions,
+        toolbar: toolbarOptions,
       },
       theme: "snow",
     });
-    
-    quill.setContents(JSON.parse(props.noter).ops);
-    console.log(JSON.parse(props.noter))
-  }, []);
 
+    quill.setContents(JSON.parse(props.noter).ops);
+    console.log(JSON.parse(props.noter));
+  }, []);
+  function onSubmit(e) {
+    e.preventDefault();
+    let editcontent = JSON.stringify(quill.getContents());
+    props.editNote(props.noterid, editcontent);
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 2000);
+  }
   return (
     <div className={mainpage.cover}>
       <div className={mainpage.title}>{props.topic}</div>
@@ -49,4 +60,8 @@ const Display = (props) => {
   );
 };
 
-export default Display;
+Display.propTypes = {
+  editNote: PropTypes.func.isRequired,
+};
+
+export default connect(null, { editNote })(Display);

@@ -8,6 +8,7 @@ import {
   DELETE_TOPIC,
   GET_NOTE,
   ADD_NOTE,
+  EDIT_NOTE,
 } from "./types";
 //
 export const addNote = (subjectid, topic, content) => async (dispatch) => {
@@ -40,6 +41,29 @@ export const getTopics = (subid) => async (dispatch) => {
       type: GET_TOPICS,
       payload: res.data,
     });
+  } catch (err) {
+    dispatch({
+      type: NOTES_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const editNote = (id, content) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const formData = JSON.stringify({ content });
+  try {
+    await axios.patch(`/api/note/${id}`, formData, config);
+    const res = await axios.get(`/api/note/single/${id}`);
+    dispatch({
+      type: EDIT_NOTE,
+      payload: res.data,
+    });
+    dispatch(setAlert("SAVED CHANGES", "success"));
   } catch (err) {
     dispatch({
       type: NOTES_ERROR,

@@ -71,6 +71,20 @@ router.get("/single/:id", auth, async (req, res) => {
   }
 });
 
+router.patch("/:id", auth, async (req, res) => {
+  try {
+    const updatecontent = await Note.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.send(updatecontent);
+  } catch (err) {
+    console.error(err.message);
+    res.status(404).send("data not found");
+  }
+});
+
 router.delete("/:subjectid", auth, async (req, res) => {
   try {
     const notes = await Note.find({
@@ -82,7 +96,7 @@ router.delete("/:subjectid", auth, async (req, res) => {
         msg: "note not found",
       });
     }
-
+    //
     await Note.deleteMany({
       user: req.user.id,
       subjectid: req.params.subjectid,
