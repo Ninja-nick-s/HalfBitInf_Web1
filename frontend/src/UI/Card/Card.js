@@ -96,7 +96,7 @@ const Card = (props) => {
     allcontainer.append(fileoption);
     setTimeout(() => {
       document.getElementById(id).append(allcontainer);
-    }, 1500);
+    }, 500);
   }
   useEffect(() => {
     props.getAllnote(subid);
@@ -116,10 +116,12 @@ const Card = (props) => {
       });
     setTimeout(() => {
       props.allnote.allnotes.map((note) => {
-        if (it === props.index) {
-          note.notes.map((onesub) => {
-            injectinid(props.index, onesub.topic, onesub._id, onesub.content);
-          });
+        if (note.notes.length !== 0) {
+          if (note.notes[0].subjectid === props.id) {
+            note.notes.map((onesub) => {
+              injectinid(props.index, onesub.topic, onesub._id, onesub.content);
+            });
+          }
         }
         it = it + 1;
       });
