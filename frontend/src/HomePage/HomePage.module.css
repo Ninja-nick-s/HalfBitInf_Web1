@@ -230,3 +230,28 @@
         margin-left: 0px;
     }
 }
+@media screen and (max-width: 600px) {
+    .head{
+        font-size: 50px;
+    }
+    .quote{
+        font-size: 30px;
+    }
+    .navlink{
+        width: 70%;
+        padding: 6px 0px;
+    }
+}
+@media screen and (max-height: 700px) {
+    .head{
+        font-size: 30px;
+    }
+    .quote{
+        font-size: 20px;
+    }
+    
+    .left{
+        transform: translateY(-20%);
+        justify-content: end;
+    }
+}
