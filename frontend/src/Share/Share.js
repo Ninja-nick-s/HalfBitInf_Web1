@@ -4,15 +4,22 @@ import Navbar from "../UI/Navbar/Navbar";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getSharednotes, deletesharednotes } from "../actions/snote";
+import ShowSharedNotes from "./ShowSharedNotes/ShowSharedNotes";
+import CustomModal from "../UI/Modal/Modal";
 
 let form;
-let gnote = [];
+let topicData;
+let contentData;
 const Share = (props) => {
+  const [openModal, modalStateUpdater] = useState(-1);
   useEffect(() => {
     props.getSharednotes();
   }, [props.getSharednotes]);
   function showsharedNote(topic, content) {
     console.log(topic, content);
+    modalStateUpdater(0);
+    topicData = topic;
+    contentData = content;
   }
   function deletesnote(shnoteid) {
     props.deletesharednotes(shnoteid);
@@ -20,8 +27,24 @@ const Share = (props) => {
       window.location.reload(false);
     }, 2000);
   }
+  if (openModal === 0)
+    form = (
+      <ShowSharedNotes
+        onClose={modalStateUpdater.bind(this, -1)}
+        changeState={modalStateUpdater}
+        isOpen={openModal !== -1}
+        topic = {topicData}
+        content = {contentData}
+      />
+    );
   return (
     <>
+      <CustomModal
+        isOpen={openModal === 0}
+        className={share.modal}
+      >
+        {form}
+      </CustomModal>
       <div className={share.main}>
         <div className={share.topright}> </div>
         <div className={share.bottomleft}> </div>

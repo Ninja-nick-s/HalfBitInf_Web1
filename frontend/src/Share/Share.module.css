@@ -141,6 +141,9 @@
     .foldername{
         grid-template-columns: repeat(2, 1fr);
     }
+    .navbar{
+        right: 0%;
+    }
 }
 @media screen and (max-width: 800px) {
     .navbar{

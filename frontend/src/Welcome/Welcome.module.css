@@ -137,6 +137,11 @@ img{
     width: 90%;
   }
 }
+@media screen and (max-width: 900px) {
+  .navbar{
+      right: 0%;
+  }
+}
 @media screen and (max-width: 800px) {
   .board{
     width: 95%;

@@ -33,8 +33,7 @@
 }
 .editorarea{
     width: 100%;
-    margin-bottom: 100px;
-    max-height: 75%;
+    max-height: 90%;
 }
 .buttoncover{
     display: flex;
