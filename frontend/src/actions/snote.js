@@ -14,6 +14,9 @@ export const getSharednotes = () => async (dispatch) => {
       type: GET_SHARED_NOTES,
       payload: res.data,
     });
+    if (res.data.length === 0) {
+      dispatch(setAlert("Oops !! Your Shared folder is Empty", "success"));
+    }
   } catch (err) {
     dispatch({
       type: SHARED_NOTES_ERROR,
