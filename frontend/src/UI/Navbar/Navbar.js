@@ -55,7 +55,11 @@ const Navbar = (props) => {
       animationData: require("../../General_Jsons/Navbar_jsons/main.json"),
     });
   }, [props.isLogin]);
-
+  function reloadmain() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 20);
+  }
   return (
     <>
       {width < 800 ? (
@@ -86,7 +90,12 @@ const Navbar = (props) => {
 
           {props.isLogin ? (
             <>
-              <NavLink to="/main" className={navbar.navlink} exact>
+              <NavLink
+                to="/main"
+                className={navbar.navlink}
+                exact
+                onClick={(e) => reloadmain()}
+              >
                 <div
                   className={`${navbar.icon} ${
                     props.currentActive == 3 ? navbar.active : null

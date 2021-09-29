@@ -19,7 +19,7 @@ const Create = (props) => {
     [{ indent: "-1" }, { indent: "+1" }],
     [{ direction: "rtl" }],
     [{ size: ["small", false, "large", "huge"] }],
-    ["link", "image", "video", "formula", "code-block"],
+    ["link", "video", "formula", "code-block"],
     [{ color: [] }, { background: [] }],
   ];
   //const [conten, setContent] = useState("");
