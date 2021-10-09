@@ -3,9 +3,27 @@
 Hey! everyone. We did it 😎😎. Our WebApp is up and running On 👇
 [Note-Keeper](https://secret-fjord-21121.herokuapp.com/)
 
-# Creating Note Making WebApp
+## Devlok learning experience
+### Tech-stacks which we worked upon
+1. Node js
+2. React js
+3. Redux
+4. MongoDB
+### Libraries used
+1. Lottie web
+2. Quill js editor
+3. React-Redux
+4. Bcyrpt js
+5. Json web token
+### Devlok experience journey
+- It was very Enthusiastic Event.
+- We had a great learning experience.
+- Awesome mentor support was their.
+- We faced many challanges and tried to tackle them with tech stacks we learned.
+- We had good Teamwork experience.
+- Learned Working in Limited time to complete goals of our project.
 
-## Goal
+## Project Goals
 
 - Taking notes
 - Saving notes
